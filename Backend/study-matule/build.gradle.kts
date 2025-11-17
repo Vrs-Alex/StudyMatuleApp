@@ -20,7 +20,21 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
+
+    // Web Controllers ets
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    // Database
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly ("com.h2database:h2")
+
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations")
+
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+
+    implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
