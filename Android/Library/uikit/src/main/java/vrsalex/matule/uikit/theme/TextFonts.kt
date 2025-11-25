@@ -6,9 +6,9 @@ import androidx.compose.ui.text.font.FontWeight
 import vrsalex.matule.uikit.R
 
 val sfProDisplay = FontFamily(
-    Font(R.font.SF_Pro_Display_Regular, FontWeight.Normal),
-    Font(R.font.SF_Pro_Display_Semibold, FontWeight.SemiBold),
-    Font(R.font.SF_Pro_Display_Heavy, FontWeight(800)),
-    Font(R.font.SF_Pro_Display_Medium, FontWeight.Medium),
-    Font(R.font.SF_Pro_Display_Bold, FontWeight.Bold)
+    Font(R.font.sf_pro_display_regular, FontWeight.Normal),
+    Font(R.font.sf_pro_display_semibold, FontWeight.SemiBold),
+    Font(R.font.sf_pro_display_heavy, FontWeight(800)),
+    Font(R.font.sf_pro_display_medium, FontWeight.Medium),
+    Font(R.font.sf_pro_display_bold, FontWeight.Bold)
 )
