@@ -8,7 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import vrsalex.matule.uikit.component.AppChip
+import vrsalex.matule.uikit.component.button.AppChip
 import vrsalex.matule.uikit.theme.AppTheme
 
 @Composable

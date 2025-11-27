@@ -1,4 +1,4 @@
-package vrsalex.matule.uikit.component
+package vrsalex.matule.uikit.component.button
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import vrsalex.matule.uikit.component.AppIcon
+import vrsalex.matule.uikit.component.AppIconKey
 import vrsalex.matule.uikit.theme.AppTheme
 import vrsalex.matule.uikit.theme.White
 

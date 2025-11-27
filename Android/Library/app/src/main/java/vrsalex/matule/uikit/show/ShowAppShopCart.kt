@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import vrsalex.matule.uikit.component.AppShopCart
+import vrsalex.matule.uikit.component.button.AppShopCart
 import vrsalex.matule.uikit.theme.AppTheme
 
 @Composable

@@ -3,14 +3,13 @@ package vrsalex.matule.uikit.show
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import vrsalex.matule.uikit.component.AppSearchBar
+import vrsalex.matule.uikit.component.input.AppSearchBar
 import vrsalex.matule.uikit.theme.AppTheme
 
 @Composable

@@ -1,4 +1,4 @@
-package vrsalex.matule.uikit.component
+package vrsalex.matule.uikit.component.button
 
 
 import androidx.compose.foundation.clickable

@@ -1,8 +1,6 @@
-package vrsalex.matule.uikit.component
+package vrsalex.matule.uikit.component.button
 
-import android.view.RoundedCorner
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height

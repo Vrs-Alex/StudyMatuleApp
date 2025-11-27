@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import vrsalex.matule.uikit.component.AppBubble
+import vrsalex.matule.uikit.component.button.AppBubble
 import vrsalex.matule.uikit.component.AppIconKey
-import vrsalex.matule.uikit.component.BubbleType
+import vrsalex.matule.uikit.component.button.BubbleType
 import vrsalex.matule.uikit.theme.AppTheme
 
 @Composable

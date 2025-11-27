@@ -1,6 +1,5 @@
 package vrsalex.matule.uikit.show
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,12 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import vrsalex.matule.uikit.component.AppButton
-import vrsalex.matule.uikit.component.AppButtonSize
-import vrsalex.matule.uikit.component.AppButtonType
+import vrsalex.matule.uikit.component.button.AppButton
+import vrsalex.matule.uikit.component.button.AppButtonSize
+import vrsalex.matule.uikit.component.button.AppButtonType
 import vrsalex.matule.uikit.theme.AppTheme
 
 @Composable
