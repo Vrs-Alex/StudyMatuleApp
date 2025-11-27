@@ -15,7 +15,7 @@ val InputStroke = Color(0xFFEBEBEB)
 val InputIcon = Color(0xFFB8C1CC)
 val Placeholder = Color(0xFF939396)
 val Description = Color(0xFF7E7E9A)
-val CardStroke = Color(0xFFF4F4F4)
+val CardStroke = Color(0xFFB8C1CC)
 val Caption = Color(0xFF939396)
 
 val Gradient1_1 = Color(0xFF75D8BC)

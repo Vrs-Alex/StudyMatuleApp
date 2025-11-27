@@ -17,7 +17,7 @@ fun ShowAppHeader() {
 
 
     Column(
-        modifier = Modifier.background(Color.Gray).padding(vertical = AppTheme.spacing.spacing16),
+        modifier = Modifier.padding(vertical = AppTheme.spacing.spacing16),
         verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.spacing16)
     ) {
         AppHeader(

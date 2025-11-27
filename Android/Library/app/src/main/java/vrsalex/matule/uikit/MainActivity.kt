@@ -14,10 +14,12 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import vrsalex.matule.uikit.show.ShopAppShopCart
 import vrsalex.matule.uikit.show.ShowAppBubble
 import vrsalex.matule.uikit.show.ShowAppButton
+import vrsalex.matule.uikit.show.ShowAppCard
 import vrsalex.matule.uikit.show.ShowAppChip
 import vrsalex.matule.uikit.show.ShowAppController
 import vrsalex.matule.uikit.show.ShowAppHeader
@@ -28,6 +30,7 @@ import vrsalex.matule.uikit.show.ShowAppSearchBar
 import vrsalex.matule.uikit.show.ShowAppTextField
 import vrsalex.matule.uikit.show.ShowShopSelectorFiled
 import vrsalex.matule.uikit.theme.AppTheme
+import vrsalex.matule.uikit.theme.Black
 import vrsalex.matule.uikit.theme.White
 
 class MainActivity : ComponentActivity() {
@@ -39,7 +42,7 @@ class MainActivity : ComponentActivity() {
                 Column(modifier = Modifier
                     .statusBarsPadding()
                     .fillMaxSize()
-                    .background(White)
+                    .background(Color(0xFF2C2C2C))
                     .imePadding()
                     .verticalScroll(rememberScrollState())) {
 
@@ -66,6 +69,8 @@ class MainActivity : ComponentActivity() {
                     ShowAppHeader()
 
                     ShowAppModalBottomSheet()
+
+                    ShowAppCard()
 
                     Spacer(Modifier.size(200.dp))
                 }
