@@ -42,6 +42,10 @@ android {
 }
 
 dependencies {
+
+    implementation(files("lib/uikit-release.aar"))
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
