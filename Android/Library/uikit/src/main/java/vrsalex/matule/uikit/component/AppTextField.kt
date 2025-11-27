@@ -35,6 +35,8 @@ fun AppTextField(
     onValueChange: (String) -> Unit,
     placeholder: String,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    singleLine: Boolean = true,
     label: String? = null,
     errorMessage: String? = null
 ) {
@@ -46,7 +48,7 @@ fun AppTextField(
 
 
     val containerShape = RoundedCornerShape(10.dp)
-    val baseModifier = modifier
+    val baseModifier = Modifier
         .height(50.dp)
         .background(
             color = if (errorMessage != null) Error.copy(alpha = 0.1f) else InputBackground,
@@ -62,7 +64,7 @@ fun AppTextField(
             shape = containerShape
         )
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = modifier.fillMaxWidth()) {
         if (label != null) {
             Text(
                 text = label,
@@ -78,7 +80,8 @@ fun AppTextField(
             textStyle = typography.textRegular.copy(
                 color = colors.text
             ),
-            singleLine = true,
+            enabled = enabled,
+            singleLine = singleLine,
             modifier = baseModifier
                 .fillMaxWidth()
                 .onFocusChanged { focusState ->
