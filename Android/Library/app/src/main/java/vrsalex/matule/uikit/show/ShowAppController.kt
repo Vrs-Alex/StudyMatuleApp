@@ -10,7 +10,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import vrsalex.matule.uikit.component.controls.AppCheckbox
 import vrsalex.matule.uikit.component.controls.AppCounter
+import vrsalex.matule.uikit.component.controls.AppTimePicker
 import vrsalex.matule.uikit.component.controls.AppToggle
 import vrsalex.matule.uikit.theme.AppTheme
 
@@ -31,6 +33,19 @@ fun ShowAppController() {
             count = 10,
             onPlusClick = {},
             onMinusClick = {}
+        )
+
+        var isSelected by remember { mutableStateOf(true) }
+        AppTimePicker(
+            time = "12:00",
+            onClick = { isSelected = !isSelected },
+            isSelected = isSelected
+        )
+
+        var isChecked2 by remember { mutableStateOf(true) }
+        AppCheckbox(
+            isChecked = isChecked2,
+            onCheckedChange = { isChecked2 = !isChecked2 }
         )
     }
 }
