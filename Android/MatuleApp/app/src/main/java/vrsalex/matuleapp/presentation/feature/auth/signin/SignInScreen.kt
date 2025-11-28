@@ -76,12 +76,12 @@ fun SignInScreen(
                 keyboardType = KeyboardType.Password,
                 visualTransformation = PasswordVisualTransformation()
             )
-            val buttonType = if (uiState.value.password.isNotEmpty() && uiState.value.email.isNotEmpty()) AppButtonType.Primary
+            val buttonType = if (uiState.value.isButtonEnabled) AppButtonType.Primary
                 else AppButtonType.Secondary
             AppButton(
                 buttonSize = AppButtonSize.Large,
                 buttonType = buttonType,
-                onClick = { onNextScreen() }, // Заглушка signInViewModel.onEvent(SignInEvent.LoginClicked)
+                onClick = {  if (uiState.value.isButtonEnabled) onNextScreen() }, // Заглушка signInViewModel.onEvent(SignInEvent.LoginClicked)
             ) {
                 Text(
                     "Далее",
