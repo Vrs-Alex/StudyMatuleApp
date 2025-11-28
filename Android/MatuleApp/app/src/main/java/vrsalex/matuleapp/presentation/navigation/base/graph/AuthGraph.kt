@@ -6,7 +6,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import kotlinx.serialization.Serializable
-import vrsalex.matuleapp.presentation.feature.auth.SignInScreen
+import vrsalex.matuleapp.presentation.feature.auth.profile.CreateProfileScreen
+import vrsalex.matuleapp.presentation.feature.auth.signin.SignInScreen
 import vrsalex.matuleapp.presentation.navigation.base.destination.AuthDestination
 import vrsalex.matuleapp.presentation.navigation.base.destination.Destination
 
@@ -22,11 +23,17 @@ fun NavGraphBuilder.authGraph(
     ){
 
         composable<AuthDestination.SignIn>{
-            SignInScreen()
+            SignInScreen(){
+                navController.navigate(AuthDestination.CreatedProfile)
+            }
         }
 
         composable<AuthDestination.SignUp>{
 
+        }
+
+        composable<AuthDestination.CreatedProfile> {
+            CreateProfileScreen()
         }
 
     }

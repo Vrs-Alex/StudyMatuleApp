@@ -13,4 +13,8 @@ object AuthDestination {
     @Keep
     data object SignUp : Destination
 
+    @Serializable
+    @Keep
+    data object CreatedProfile : Destination
+
 }
