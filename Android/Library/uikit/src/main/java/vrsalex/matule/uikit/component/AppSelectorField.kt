@@ -33,7 +33,8 @@ fun AppSelectorField(
     placeholder: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    label: String? = null
+    label: String? = null,
+    content: (@Composable () -> Unit)? = null
 ) {
 
     Column(modifier = modifier.fillMaxWidth()) {
@@ -62,12 +63,14 @@ fun AppSelectorField(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-
-            Text(
-                text = value ?: placeholder,
-                style = AppTheme.typography.headLineRegular,
-                color = if (value != null) AppTheme.colors.text else Caption
-            )
+            if (content == null) {
+                Text(
+                    text = if (value == null || value.isEmpty()) placeholder else value,
+                    style = AppTheme.typography.headLineRegular,
+                    color = if (value != null) AppTheme.colors.text else Caption
+                )
+            }
+            else content()
 
             AppIcon(key = AppIconKey.DOWN, tint = Description)
 
