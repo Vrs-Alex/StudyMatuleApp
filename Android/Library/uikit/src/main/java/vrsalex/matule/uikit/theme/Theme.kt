@@ -7,129 +7,109 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 
 @Immutable
 data class AppColors(
-    val background: Color,
-    val surface: Color,
-    val primary: Color,
-    val onPrimary: Color,
-    val text: Color
+    val accent: Color,
+    val accentInactive: Color,
+    val error: Color,
+    val success: Color,
+    val inputBg: Color,
+    val inputStroke: Color,
+    val inputIcon: Color,
+    val placeholder: Color,
+    val description: Color,
+    val cardStroke: Color,
+    val caption: Color
 )
+
 
 @Immutable
 data class AppTypography(
     val title1Semibold: TextStyle,
-    val title1Bold: TextStyle,
-
+    val title1Heavy: TextStyle,
     val title2Regular: TextStyle,
     val title2Semibold: TextStyle,
     val title2Heavy: TextStyle,
-
     val title3Regular: TextStyle,
-    val title3Semibold: TextStyle,
     val title3Medium: TextStyle,
-
+    val title3Semibold: TextStyle,
     val headLineRegular: TextStyle,
     val headLineMedium: TextStyle,
-
-    val captionRegular: TextStyle,
-    val captionSemibold: TextStyle,
-
-    val caption2Regular: TextStyle,
-    val caption2Bold: TextStyle,
-
     val textRegular: TextStyle,
-    val textMedium: TextStyle
+    val textMedium: TextStyle,
+    val captionRegular: TextStyle,
+    val captionMedium: TextStyle,
+    val caption2Regular: TextStyle,
+    val caption2Medium: TextStyle
 )
 
-@Immutable
-data class AppSpacing(
-    val spacing4: Dp,
-    val spacing8: Dp,
-    val spacing12: Dp,
-    val spacing16: Dp,
-    val spacing20: Dp,
-    val spacing24: Dp,
-    val spacing32: Dp,
-    val spacing40: Dp,
-    val spacing48: Dp,
-    val spacing56: Dp,
-    val spacing64: Dp
-)
-
-val LocalAppColors = staticCompositionLocalOf {
+val AppColorsLocalComposition = staticCompositionLocalOf { 
     AppColors(
-        background = Color.Unspecified,
-        surface = Color.Unspecified,
-        primary = Color.Unspecified,
-        onPrimary = Color.Unspecified,
-        text = Color.Unspecified
-    )
+        Color.Unspecified, Color.Unspecified, Color.Unspecified,
+        Color.Unspecified, Color.Unspecified, Color.Unspecified,
+        Color.Unspecified, Color.Unspecified, Color.Unspecified, 
+        Color.Unspecified, Color.Unspecified)
 }
 
-val LocalAppTypography = staticCompositionLocalOf {
+val AppTypographyLocalComposition = staticCompositionLocalOf { 
     AppTypography(
-        title1Semibold = TextStyle.Default,
-        title1Bold = TextStyle.Default,
-        title2Regular = TextStyle.Default,
-        title2Semibold = TextStyle.Default,
-        title2Heavy = TextStyle.Default,
-        title3Regular = TextStyle.Default,
-        title3Semibold = TextStyle.Default,
-        title3Medium = TextStyle.Default,
-        headLineRegular = TextStyle.Default,
-        headLineMedium = TextStyle.Default,
-        captionRegular = TextStyle.Default,
-        captionSemibold = TextStyle.Default,
-        caption2Regular = TextStyle.Default,
-        caption2Bold = TextStyle.Default,
-        textRegular = TextStyle.Default,
-        textMedium = TextStyle.Default,
-    )
-}
-
-val LocalAppSpacing = staticCompositionLocalOf {
-    AppSpacing(
-        spacing4 = Dp.Unspecified,
-        spacing8 = Dp.Unspecified,
-        spacing12 = Dp.Unspecified,
-        spacing16 = Dp.Unspecified,
-        spacing20 = Dp.Unspecified,
-        spacing24 = Dp.Unspecified,
-        spacing32 = Dp.Unspecified,
-        spacing40 = Dp.Unspecified,
-        spacing48 = Dp.Unspecified,
-        spacing56 = Dp.Unspecified,
-        spacing64 = Dp.Unspecified
+        title1Semibold = TextStyle.Default, title1Heavy = TextStyle.Default,
+        title2Regular = TextStyle.Default, title2Semibold = TextStyle.Default, title2Heavy = TextStyle.Default,
+        title3Regular = TextStyle.Default, title3Medium = TextStyle.Default, title3Semibold = TextStyle.Default,
+        headLineRegular = TextStyle.Default, headLineMedium = TextStyle.Default,
+        textRegular = TextStyle.Default, textMedium = TextStyle.Default,
+        captionRegular = TextStyle.Default, captionMedium = TextStyle.Default,
+        caption2Regular = TextStyle.Default, caption2Medium = TextStyle.Default
     )
 }
 
 
 @Composable
 fun AppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    isDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     val colors = AppColors(
-        background = Color.White,
-        surface = Color.White,
-        primary = Accent,
-        onPrimary = Color.White,
-        text = Black
+        accent = Accent,
+        accentInactive = AccentInactive,
+        error = Error,
+        success = Success,
+        inputBg = InputBg,
+        inputStroke = InputStroke,
+        inputIcon = InputIcon,
+        placeholder = Placeholder,
+        description = Description,
+        cardStroke = CardStroke,
+        caption = Caption
     )
-    val spacing = AppSpacing(4.dp, 8.dp, 12.dp, 16.dp, 20.dp, 24.dp,
-        32.dp, 40.dp, 48.dp, 56.dp, 64.dp)
+
+    val typography = AppTypography(
+        title1Semibold = title1Base.copy(fontWeight = FontWeight.SemiBold),
+        title1Heavy = title1Base.copy(fontWeight = FontWeight.Black),
+        title2Regular = title2Base.copy(fontWeight = FontWeight.Normal),
+        title2Semibold = title2Base.copy(fontWeight = FontWeight.SemiBold),
+        title2Heavy = title2Base.copy(fontWeight = FontWeight.Black),
+        title3Regular = title3Base.copy(fontWeight = FontWeight.Normal),
+        title3Medium = title3Base.copy(fontWeight = FontWeight.Medium),
+        title3Semibold = title3Base.copy(fontWeight = FontWeight.SemiBold),
+        headLineRegular = headLineBase.copy(fontWeight = FontWeight.Normal),
+        headLineMedium = headLineBase.copy(fontWeight = FontWeight.Medium),
+        textRegular = textBase.copy(fontWeight = FontWeight.Normal),
+        textMedium = textBase.copy(fontWeight = FontWeight.Medium),
+        captionRegular = captionBase.copy(fontWeight = FontWeight.Normal),
+        captionMedium = captionBase.copy(fontWeight = FontWeight.Medium),
+        caption2Regular = caption2Base.copy(fontWeight = FontWeight.Normal),
+        caption2Medium = caption2Base.copy(fontWeight = FontWeight.Medium)
+    )
 
     CompositionLocalProvider(
-        LocalAppColors provides colors,
-        LocalAppTypography provides typography,
-        LocalAppSpacing provides spacing,
+        AppColorsLocalComposition provides colors,
+        AppTypographyLocalComposition provides typography,
         content = content
     )
 
@@ -137,129 +117,67 @@ fun AppTheme(
 
 object AppTheme {
     val colors: AppColors
-        @Composable
-        get() = LocalAppColors.current
+        @Composable get() = AppColorsLocalComposition.current
     val typography: AppTypography
-        @Composable
-        get() = LocalAppTypography.current
-    val spacing: AppSpacing
-        @Composable
-        get() = LocalAppSpacing.current
+        @Composable get() = AppTypographyLocalComposition.current
 }
 
 
-
-private val typography = AppTypography(
-    title1Semibold = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.0033.em
-    ),
-    title1Bold = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.0033.em
-    ),
-    title2Regular = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.0038.em
-    ),
-    title2Semibold = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.0038.em
-    ),
-    title2Heavy = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight(800),
-        fontSize = 20.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.0038.em
-    ),
-    title3Regular = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Normal,
-        fontSize = 17.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.em
-    ),
-    title3Semibold = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 17.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.em
-    ),
-    title3Medium = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Medium,
-        fontSize = 17.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.em
-    ),
-    headLineRegular = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 20.sp,
-        letterSpacing = -(0.0032).em
-    ),
-    headLineMedium = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
-        lineHeight = 20.sp,
-        letterSpacing = -(0.0032).em
-    ),
-    textRegular = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Normal,
-        fontSize = 15.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.em
-    ),
-    textMedium = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Medium,
-        fontSize = 15.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.em
-    ),
-    captionRegular = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.em
-    ),
-    captionSemibold = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.em
-    ),
-    caption2Regular = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.em
-    ),
-    caption2Bold = TextStyle(
-        fontFamily = sfProDisplay,
-        fontWeight = FontWeight.Bold,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.em
-    )
+private val title1Base = TextStyle(
+    fontFamily = sfProDisplayFont,
+    fontWeight = FontWeight.Normal,
+    fontSize = 24.sp,
+    lineHeight = 28.sp,
+    letterSpacing = 0.0033.em
 )
+
+private val title2Base = TextStyle(
+    fontFamily = sfProDisplayFont,
+    fontWeight = FontWeight.Normal,
+    fontSize = 20.sp,
+    lineHeight = 28.sp,
+    letterSpacing = 0.0038.em
+)
+
+private val title3Base = TextStyle(
+    fontFamily = sfProDisplayFont,
+    fontWeight = FontWeight.Normal,
+    fontSize = 17.sp,
+    lineHeight = 24.sp,
+    letterSpacing = 0.em
+)
+
+private val headLineBase = TextStyle(
+    fontFamily = sfProDisplayFont,
+    fontWeight = FontWeight.Normal,
+    fontSize = 16.sp,
+    lineHeight = 20.sp,
+    letterSpacing = -(0.0032).em
+)
+
+private val textBase = TextStyle(
+    fontFamily = sfProDisplayFont,
+    fontWeight = FontWeight.Normal,
+    fontSize = 15.sp,
+    lineHeight = 20.sp,
+    letterSpacing = 0.em
+)
+
+private val captionBase = TextStyle(
+    fontFamily = sfProDisplayFont,
+    fontWeight = FontWeight.Normal,
+    fontSize = 14.sp,
+    lineHeight = 20.sp,
+    letterSpacing = 0.em
+)
+
+private val caption2Base = TextStyle(
+    fontFamily = sfProDisplayFont,
+    fontWeight = FontWeight.Normal,
+    fontSize = 12.sp,
+    lineHeight = 16.sp,
+    letterSpacing = 0.em
+)
+
+
+
