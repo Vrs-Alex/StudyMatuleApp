@@ -23,7 +23,8 @@ data class AppColors(
     val inputIcon: Color,
     val placeholder: Color,
     val description: Color,
-    val cardStroke: Color
+    val cardStroke: Color,
+    val caption: Color
 )
 
 
@@ -52,7 +53,7 @@ val AppColorsLocalComposition = staticCompositionLocalOf {
         Color.Unspecified, Color.Unspecified, Color.Unspecified,
         Color.Unspecified, Color.Unspecified, Color.Unspecified,
         Color.Unspecified, Color.Unspecified, Color.Unspecified, 
-        Color.Unspecified)
+        Color.Unspecified, Color.Unspecified)
 }
 
 val AppTypographyLocalComposition = staticCompositionLocalOf { 
@@ -83,7 +84,8 @@ fun AppTheme(
         inputIcon = InputIcon,
         placeholder = Placeholder,
         description = Description,
-        cardStroke = CardStroke
+        cardStroke = CardStroke,
+        caption = Caption
     )
 
     val typography = AppTypography(
