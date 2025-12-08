@@ -128,7 +128,8 @@ private val title1Base = TextStyle(
     fontWeight = FontWeight.Normal,
     fontSize = 24.sp,
     lineHeight = 28.sp,
-    letterSpacing = 0.0033.em
+    letterSpacing = 0.0033.em,
+    color = White
 )
 
 private val title2Base = TextStyle(
@@ -136,7 +137,8 @@ private val title2Base = TextStyle(
     fontWeight = FontWeight.Normal,
     fontSize = 20.sp,
     lineHeight = 28.sp,
-    letterSpacing = 0.0038.em
+    letterSpacing = 0.0038.em,
+    color = White
 )
 
 private val title3Base = TextStyle(
@@ -144,7 +146,8 @@ private val title3Base = TextStyle(
     fontWeight = FontWeight.Normal,
     fontSize = 17.sp,
     lineHeight = 24.sp,
-    letterSpacing = 0.em
+    letterSpacing = 0.em,
+    color = White
 )
 
 private val headLineBase = TextStyle(
@@ -152,7 +155,8 @@ private val headLineBase = TextStyle(
     fontWeight = FontWeight.Normal,
     fontSize = 16.sp,
     lineHeight = 20.sp,
-    letterSpacing = -(0.0032).em
+    letterSpacing = -(0.0032).em,
+    color = White
 )
 
 private val textBase = TextStyle(
@@ -160,7 +164,8 @@ private val textBase = TextStyle(
     fontWeight = FontWeight.Normal,
     fontSize = 15.sp,
     lineHeight = 20.sp,
-    letterSpacing = 0.em
+    letterSpacing = 0.em,
+    color = White
 )
 
 private val captionBase = TextStyle(
@@ -168,7 +173,8 @@ private val captionBase = TextStyle(
     fontWeight = FontWeight.Normal,
     fontSize = 14.sp,
     lineHeight = 20.sp,
-    letterSpacing = 0.em
+    letterSpacing = 0.em,
+    color = White
 )
 
 private val caption2Base = TextStyle(
@@ -176,7 +182,8 @@ private val caption2Base = TextStyle(
     fontWeight = FontWeight.Normal,
     fontSize = 12.sp,
     lineHeight = 16.sp,
-    letterSpacing = 0.em
+    letterSpacing = 0.em,
+    color = White
 )
 
 

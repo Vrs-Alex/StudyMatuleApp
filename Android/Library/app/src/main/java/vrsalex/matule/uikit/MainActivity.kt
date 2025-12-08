@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import vrsalex.matule.uikit.show.ShowButton
 import vrsalex.matule.uikit.show.ShowControllers
+import vrsalex.matule.uikit.show.ShowInput
 import vrsalex.matule.uikit.show.ShowSystemIcon
 import vrsalex.matule.uikit.theme.AppTheme
 
@@ -35,6 +36,10 @@ class MainActivity : ComponentActivity() {
                     Spacer(modifier = Modifier.height(32.dp))
 
                     ShowButton()
+
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    ShowInput()
                 }
             }
         }
