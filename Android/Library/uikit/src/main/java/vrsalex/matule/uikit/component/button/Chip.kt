@@ -1,5 +1,6 @@
 package vrsalex.matule.uikit.component.button
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -7,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -20,7 +22,7 @@ fun Chip(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val color = if (isSelected) AppTheme.colors.accent else AppTheme.colors.inputBg
+    val color by animateColorAsState(if (isSelected) AppTheme.colors.accent else AppTheme.colors.inputBg)
     val contentColor = if (isSelected) White else AppTheme.colors.description
 
 
