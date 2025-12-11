@@ -13,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import vrsalex.matule.uikit.show.ShowBottomSheet
 import vrsalex.matule.uikit.show.ShowBubble
 import vrsalex.matule.uikit.show.ShowButton
 import vrsalex.matule.uikit.show.ShowControllers
@@ -43,6 +44,8 @@ class MainActivity : ComponentActivity() {
                     ShowSearch()
 
                     ShowButton()
+
+                    ShowBottomSheet()
                 }
             }
         }
