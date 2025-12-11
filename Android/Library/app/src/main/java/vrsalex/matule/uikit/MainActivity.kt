@@ -19,6 +19,7 @@ import vrsalex.matule.uikit.show.ShowButton
 import vrsalex.matule.uikit.show.ShowControllers
 import vrsalex.matule.uikit.show.ShowInput
 import vrsalex.matule.uikit.show.ShowSearch
+import vrsalex.matule.uikit.show.ShowSelect
 import vrsalex.matule.uikit.show.ShowSystemIcon
 import vrsalex.matule.uikit.theme.AppTheme
 
@@ -46,6 +47,8 @@ class MainActivity : ComponentActivity() {
                     ShowButton()
 
                     ShowBottomSheet()
+
+                    ShowSelect()
                 }
             }
         }

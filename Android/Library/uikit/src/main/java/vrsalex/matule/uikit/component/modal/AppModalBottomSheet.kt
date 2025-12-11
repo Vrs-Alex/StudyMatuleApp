@@ -26,12 +26,13 @@ import vrsalex.matule.uikit.theme.White
 
 @Composable
 fun AppModalBottomSheet(
-    content: @Composable () -> Unit,
     onDismissRequest: () -> Unit,
+    content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     state: SheetState = rememberModalBottomSheetState(),
     header: @Composable (() -> Unit)? = null,
     visibleHeader: Boolean = true,
+    onCloseClick: (() -> Unit)? = null
 ) {
 
     val scope = rememberCoroutineScope()
@@ -57,7 +58,10 @@ fun AppModalBottomSheet(
                     SystemIcon(
                         icon = SystemIcon.DISMISS,
                         tint = AppTheme.colors.description,
-                        onClick = { scope.launch { state.hide() } }
+                        onClick = {
+                            if (onCloseClick != null) onCloseClick()
+                            else scope.launch { state.hide() }
+                        }
                     )
                 }
                 Spacer(Modifier.height(24.dp))
