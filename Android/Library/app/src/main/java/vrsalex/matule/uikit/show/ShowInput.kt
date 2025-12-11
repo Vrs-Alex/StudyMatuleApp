@@ -56,12 +56,12 @@ fun ShowInput() {
             var text12 by remember { mutableStateOf("") }
             SingleInputField(
                 value = text11,
-                onValueChange = { text11 = it }
+                onValueChange = { if (it.length <= 1) text11 = it }
             )
 
             SingleInputField(
                 value = text12,
-                onValueChange = { text12 = it }
+                onValueChange = { if (it.length <= 1) text12 = it }
             )
         }
     }
