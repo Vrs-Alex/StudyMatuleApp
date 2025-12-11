@@ -21,6 +21,7 @@ import vrsalex.matule.uikit.show.ShowInput
 import vrsalex.matule.uikit.show.ShowSearch
 import vrsalex.matule.uikit.show.ShowSelect
 import vrsalex.matule.uikit.show.ShowSystemIcon
+import vrsalex.matule.uikit.show.ShowTabBar
 import vrsalex.matule.uikit.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,6 +50,8 @@ class MainActivity : ComponentActivity() {
                     ShowBottomSheet()
 
                     ShowSelect()
+
+                    ShowTabBar()
                 }
             }
         }
