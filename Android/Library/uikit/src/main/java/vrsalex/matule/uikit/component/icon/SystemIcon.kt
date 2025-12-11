@@ -1,7 +1,9 @@
 package vrsalex.matule.uikit.component.icon
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,13 +41,19 @@ enum class SystemIcon(val id: Int, val descroption: String = ""){
 fun SystemIcon(
     icon: SystemIcon,
     modifier: Modifier = Modifier,
-    tint: Color = AppTheme.colors.inputIcon
+    tint: Color = AppTheme.colors.inputIcon,
+    onClick: (() -> Unit)? = null
 ) {
+
+    val clickableModifier = if (onClick != null) Modifier.clickable(
+        interactionSource = null,
+        indication = ripple(true, 3.dp),
+        onClick = onClick ) else Modifier
 
     Icon(
         painter = painterResource(icon.id),
         contentDescription = icon.descroption,
-        modifier = modifier.size(20.dp),
+        modifier = modifier.size(20.dp).then(clickableModifier),
         tint = tint,
     )
 
