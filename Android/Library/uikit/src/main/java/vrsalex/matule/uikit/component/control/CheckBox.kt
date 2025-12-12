@@ -21,13 +21,13 @@ import vrsalex.matule.uikit.theme.White
 
 @Composable
 fun CheckBox(
-    isChecked: Boolean,
+    checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
-    val backgroundColor = if (isChecked) AppTheme.colors.accent else AppTheme.colors.inputBg
-    val border = if (isChecked) null else BorderStroke(1.dp, AppTheme.colors.inputStroke)
+    val backgroundColor = if (checked) AppTheme.colors.accent else AppTheme.colors.inputBg
+    val border = if (checked) null else BorderStroke(1.dp, AppTheme.colors.inputStroke)
     Box(
         modifier = modifier.size(20.dp)
             .clip(RoundedCornerShape(4.dp))
@@ -36,11 +36,11 @@ fun CheckBox(
             .clickable(
                 interactionSource = null,
                 indication = ripple(),
-                onClick = { onCheckedChange(!isChecked) }
+                onClick = { onCheckedChange(!checked) }
             ),
         contentAlignment = Alignment.Center
     ){
-        if (isChecked) {
+        if (checked) {
             SystemIcon(
                 icon = SystemIcon.CHECK,
                 tint = White,

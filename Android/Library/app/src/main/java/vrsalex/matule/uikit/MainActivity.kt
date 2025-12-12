@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import vrsalex.matule.uikit.show.ShowBottomSheet
 import vrsalex.matule.uikit.show.ShowBubble
 import vrsalex.matule.uikit.show.ShowButton
+import vrsalex.matule.uikit.show.ShowCard
 import vrsalex.matule.uikit.show.ShowControllers
 import vrsalex.matule.uikit.show.ShowInput
 import vrsalex.matule.uikit.show.ShowSearch
@@ -52,6 +53,8 @@ class MainActivity : ComponentActivity() {
                     ShowSelect()
 
                     ShowTabBar()
+
+                    ShowCard()
                 }
             }
         }

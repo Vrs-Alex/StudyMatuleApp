@@ -7,7 +7,6 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -43,9 +42,9 @@ data class AppTypography(
     val textRegular: TextStyle,
     val textMedium: TextStyle,
     val captionRegular: TextStyle,
-    val captionMedium: TextStyle,
+    val captionSemibold: TextStyle,
     val caption2Regular: TextStyle,
-    val caption2Medium: TextStyle
+    val caption2Bold: TextStyle
 )
 
 val AppColorsLocalComposition = staticCompositionLocalOf { 
@@ -63,8 +62,8 @@ val AppTypographyLocalComposition = staticCompositionLocalOf {
         title3Regular = TextStyle.Default, title3Medium = TextStyle.Default, title3Semibold = TextStyle.Default,
         headLineRegular = TextStyle.Default, headLineMedium = TextStyle.Default,
         textRegular = TextStyle.Default, textMedium = TextStyle.Default,
-        captionRegular = TextStyle.Default, captionMedium = TextStyle.Default,
-        caption2Regular = TextStyle.Default, caption2Medium = TextStyle.Default
+        captionRegular = TextStyle.Default, captionSemibold = TextStyle.Default,
+        caption2Regular = TextStyle.Default, caption2Bold = TextStyle.Default
     )
 }
 
@@ -102,9 +101,9 @@ fun AppTheme(
         textRegular = textBase.copy(fontWeight = FontWeight.Normal),
         textMedium = textBase.copy(fontWeight = FontWeight.Medium),
         captionRegular = captionBase.copy(fontWeight = FontWeight.Normal),
-        captionMedium = captionBase.copy(fontWeight = FontWeight.Medium),
+        captionSemibold = captionBase.copy(fontWeight = FontWeight.SemiBold),
         caption2Regular = caption2Base.copy(fontWeight = FontWeight.Normal),
-        caption2Medium = caption2Base.copy(fontWeight = FontWeight.Medium)
+        caption2Bold = caption2Base.copy(fontWeight = FontWeight.Bold)
     )
 
     CompositionLocalProvider(

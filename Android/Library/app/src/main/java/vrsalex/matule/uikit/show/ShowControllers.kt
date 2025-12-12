@@ -34,7 +34,7 @@ fun ShowControllers() {
 
         var isChecked by remember { mutableStateOf(false) }
         CheckBox(
-            isChecked = isChecked,
+            checked = isChecked,
             onCheckedChange = { isChecked = !isChecked }
         )
     }

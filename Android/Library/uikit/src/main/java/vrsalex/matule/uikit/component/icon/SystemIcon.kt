@@ -47,7 +47,7 @@ fun SystemIcon(
 
     val clickableModifier = if (onClick != null) Modifier.clickable(
         interactionSource = null,
-        indication = ripple(true, 3.dp),
+        indication = null,
         onClick = onClick ) else Modifier
 
     Icon(
