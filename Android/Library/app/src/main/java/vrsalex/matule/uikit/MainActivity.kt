@@ -18,6 +18,7 @@ import vrsalex.matule.uikit.show.ShowBubble
 import vrsalex.matule.uikit.show.ShowButton
 import vrsalex.matule.uikit.show.ShowCard
 import vrsalex.matule.uikit.show.ShowControllers
+import vrsalex.matule.uikit.show.ShowHeader
 import vrsalex.matule.uikit.show.ShowInput
 import vrsalex.matule.uikit.show.ShowSearch
 import vrsalex.matule.uikit.show.ShowSelect
@@ -55,6 +56,8 @@ class MainActivity : ComponentActivity() {
                     ShowTabBar()
 
                     ShowCard()
+
+                    ShowHeader()
                 }
             }
         }
