@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import vrsalex.matule.uikit.R
+import vrsalex.matule.uikit.component.icon.SystemIcon
 import vrsalex.matule.uikit.component.tabbar.BottomTab
 import vrsalex.matule.uikit.component.tabbar.TabBar
 
@@ -24,20 +26,20 @@ fun ShowTabBar() {
         val navController = rememberNavController()
 
         val bottomTabs = listOf(
-            BottomTab.Home,
-            BottomTab.Catalog,
-            BottomTab.Project,
-            BottomTab.Profile
+            BottomTab<String>(payload = "home", title = "Главная", iconId = R.drawable.tab_home),
+            BottomTab<String>(payload = "catalog", title = "Каталог", iconId = R.drawable.tab_catalog),
+            BottomTab<String>(payload = "project", title = "Проекты", iconId = R.drawable.tab_project),
+            BottomTab<String>(payload = "profile", title = "Профиль", iconId = R.drawable.tab_profile)
         )
+        val currentDestination = remember { mutableStateOf<String>("home") }
 
-//        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        var currentRoute by remember { mutableStateOf( bottomTabs.first().route) }
-
-        TabBar(
+        TabBar<String>(
             items = bottomTabs,
-            currentRoute = currentRoute,
+            isTabSelected = { payload ->
+                payload == currentDestination.value
+            },
             onTabSelected = { tab ->
-                currentRoute = tab.route
+                currentDestination.value = tab
             }
         )
     }
