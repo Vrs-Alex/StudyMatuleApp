@@ -2,20 +2,21 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "vrsalex.matuleapp"
+    namespace = "vrsalex.matule"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "vrsalex.matuleapp"
-        minSdk = 28
+        applicationId = "vrsalex.matule"
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -48,10 +49,30 @@ dependencies {
 
     implementation(files("lib/uikit-release.aar"))
 
+    // Retrofit
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation(libs.logging.interceptor)
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+
+    // Compose Navigation
     implementation(libs.androidx.navigation.compose)
-    ksp(libs.hilt.android.compiler)
+
+    // Serialization
+    implementation(libs.kotlinx.serialization.json)
+
+    // Hilt
     implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.android.compiler)
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    // DataStore
+    implementation(libs.androidx.datastore)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

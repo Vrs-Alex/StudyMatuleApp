@@ -1,3 +1,0 @@
-package vrsalex.matuleapp.presentation.navigation.base.destination
-
-interface Destination
