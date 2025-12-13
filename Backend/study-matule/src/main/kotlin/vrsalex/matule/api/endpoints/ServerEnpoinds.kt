@@ -20,8 +20,7 @@ object ServerEndpoints {
             AUTH_REFRESH_TOKEN_ENDPOINT,
             AUTH_USER_REGISTER_ENDPOINT,
             AUTH_USER_REGISTER_VERIFY_ENDPOINT,
-            AUTH_USER_LOGIN_ENDPOINT,
-            AUTH_USER_LOGOUT_ENDPOINT
+            AUTH_USER_LOGIN_ENDPOINT
         )
     }
 
