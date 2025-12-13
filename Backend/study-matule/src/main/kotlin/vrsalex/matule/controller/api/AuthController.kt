@@ -16,6 +16,7 @@ import vrsalex.matule.api.response.auth.AuthResponse
 import vrsalex.matule.application.command.auth.RefreshTokenCommand
 import vrsalex.matule.application.command.auth.VerifySignUpCommand
 import vrsalex.matule.controller.facade.AuthFacade
+import vrsalex.matule.controller.mapper.auth.LogoutControllerMapper
 import vrsalex.matule.controller.mapper.auth.RefreshTokenControllerMapper
 import vrsalex.matule.controller.mapper.auth.SignInControllerMapper
 import vrsalex.matule.controller.mapper.auth.SingUpControllerMapper
@@ -65,7 +66,7 @@ class AuthController(
     fun logout(
         @RequestBody request: LogoutRequest
     ): ResponseEntity<Void>{
-
+        authFacade.logout(LogoutControllerMapper.toCommand(request))
         return ResponseEntity.noContent().build()
     }
 

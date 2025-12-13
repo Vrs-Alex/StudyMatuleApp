@@ -13,11 +13,15 @@ object ServerEndpoints {
         const val AUTH_USER_LOGOUT_ENDPOINT = "$API_PREFIX$AUTH_PREFIX/logout"
 
 
+        const val PROFILE_PREFIX = "/profile"
+        const val PROFILE_GET_DATA_ENDPOINT = "$API_PREFIX$PROFILE_PREFIX/get"
+
         val PUBLIC_ENDPOINTS = setOf(
             AUTH_REFRESH_TOKEN_ENDPOINT,
             AUTH_USER_REGISTER_ENDPOINT,
             AUTH_USER_REGISTER_VERIFY_ENDPOINT,
-            AUTH_USER_LOGIN_ENDPOINT
+            AUTH_USER_LOGIN_ENDPOINT,
+            AUTH_USER_LOGOUT_ENDPOINT
         )
     }
 
