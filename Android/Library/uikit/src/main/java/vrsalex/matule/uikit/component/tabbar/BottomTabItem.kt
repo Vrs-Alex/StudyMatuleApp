@@ -16,7 +16,8 @@ import vrsalex.matule.uikit.theme.AppTheme
 
 @Composable
 fun BottomTabItem(
-    bottomTab: BottomTab,
+    title: String,
+    iconId: Int,
     selected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -36,12 +37,12 @@ fun BottomTabItem(
     ) {
         Icon(
             modifier = Modifier.weight(1f),
-            painter = painterResource(bottomTab.iconId),
-            contentDescription = bottomTab.title,
+            painter = painterResource(iconId),
+            contentDescription = title,
             tint = color
         )
         Text(
-            text = bottomTab.title,
+            text = title,
             style = AppTheme.typography.caption2Regular,
             color = color
         )

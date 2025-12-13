@@ -19,10 +19,10 @@ import com.google.android.material.tabs.TabItem
 import vrsalex.matule.uikit.theme.White
 
 @Composable
-fun TabBar(
-    items: List<BottomTab>,
-    currentRoute: String?,
-    onTabSelected: (BottomTab) -> Unit,
+fun <T>TabBar(
+    items: List<BottomTab<T>>,
+    isTabSelected: (T) -> Boolean,
+    onTabSelected: (T) -> Unit,
     modifier: Modifier = Modifier,
     bottomPadding: Dp = 0.dp
 ) {
@@ -43,12 +43,13 @@ fun TabBar(
             verticalAlignment = Alignment.CenterVertically
         ) {
             items.forEach { tab ->
-                val selected = tab.route == currentRoute
+                val selected = isTabSelected(tab.payload)
 
                 BottomTabItem(
-                    bottomTab = tab,
+                    title = tab.title,
+                    iconId = tab.iconId,
                     selected = selected,
-                    onClick = { onTabSelected(tab) },
+                    onClick = { onTabSelected(tab.payload) },
                     modifier = Modifier.weight(1f)
                 )
             }
