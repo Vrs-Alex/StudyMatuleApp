@@ -13,7 +13,7 @@ ONLY LOCAL TESTING
 
 
 @RestControllerAdvice
-@Order(2)
+@Order(4)
 class GlobalGenericExceptionHandler {
 
     @ExceptionHandler(Exception::class)

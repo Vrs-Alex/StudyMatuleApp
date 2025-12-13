@@ -9,7 +9,7 @@ import vrsalex.matule.exception.ErrorResponse
 import vrsalex.matule.security.exception.MySecurityException
 
 @RestControllerAdvice
-@Order(1)
+@Order(2)
 class GlobalSecurityExceptionHandler {
 
 
