@@ -1,0 +1,24 @@
+package vrsalex.matule.api.endpoints
+
+object ServerEndpoints {
+
+    object API{
+        const val API_PREFIX = "/api"
+        const val AUTH_PREFIX = "/auth"
+
+        const val AUTH_REFRESH_TOKEN_ENDPOINT = "$API_PREFIX$AUTH_PREFIX/refresh-token"
+        const val AUTH_USER_REGISTER_ENDPOINT = "$API_PREFIX$AUTH_PREFIX/register"
+        const val AUTH_USER_REGISTER_VERIFY_ENDPOINT = "$API_PREFIX$AUTH_PREFIX/register/verify"
+        const val AUTH_USER_LOGIN_ENDPOINT = "$API_PREFIX$AUTH_PREFIX/login"
+        const val AUTH_USER_LOGOUT_ENDPOINT = "$API_PREFIX$AUTH_PREFIX/logout"
+
+
+        val PUBLIC_ENDPOINTS = setOf(
+            AUTH_REFRESH_TOKEN_ENDPOINT,
+            AUTH_USER_REGISTER_ENDPOINT,
+            AUTH_USER_REGISTER_VERIFY_ENDPOINT,
+            AUTH_USER_LOGIN_ENDPOINT
+        )
+    }
+
+}
