@@ -1,5 +1,6 @@
 package vrsalex.matule.presentation.feature.auth
 
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
@@ -11,7 +12,9 @@ import vrsalex.matule.presentation.navigation.LoginRoute
 import vrsalex.matule.presentation.navigation.VerifyPhoneRoute
 
 
-fun NavGraphBuilder.authGraph() {
+fun NavGraphBuilder.authGraph(
+    navController: NavController
+) {
 
     navigation<AuthGraph>(
         startDestination = LoginRoute
