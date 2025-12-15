@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import vrsalex.matule.presentation.feature.auth.AuthGraph
 import vrsalex.matule.presentation.feature.auth.authGraph
 
 @Composable

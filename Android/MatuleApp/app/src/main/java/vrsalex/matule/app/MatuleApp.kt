@@ -10,7 +10,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import vrsalex.matule.presentation.feature.auth.authGraph
 import vrsalex.matule.presentation.navigation.AppHavHost
-import vrsalex.matule.presentation.navigation.AuthGraph
 
 import vrsalex.matule.uikit.theme.AppTheme
 import vrsalex.matule.uikit.theme.White
