@@ -113,14 +113,14 @@ fun EnterInputField(
                 }
             )
             if (isPassword){
-                val icon = if (showPassword) R.drawable.close_eyes
-                    else R.drawable.open_eyes
+                val icon = if (showPassword) R.drawable.open_eyes
+                    else R.drawable.close_eyes
 
                 Icon(
                     painter = painterResource(id = icon),
                     tint = Black,
                     contentDescription = "Show password",
-                    modifier = Modifier.size(20.dp).clickable { showPassword = !showPassword }
+                    modifier = Modifier.padding(start = 4.dp).size(20.dp).clickable { showPassword = !showPassword }
                 )
             }
         }
