@@ -1,15 +1,19 @@
 package vrsalex.matule.uikit.theme
 
+import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowCompat
 
 @Immutable
 data class AppColors(
@@ -105,6 +109,19 @@ fun AppTheme(
         caption2Regular = caption2Base.copy(fontWeight = FontWeight.Normal),
         caption2Bold = caption2Base.copy(fontWeight = FontWeight.Bold)
     )
+
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as Activity).window
+
+            val insetsController = WindowCompat.getInsetsController(window, view)
+
+            insetsController.isAppearanceLightStatusBars = !isDarkTheme
+            insetsController.isAppearanceLightNavigationBars = !isDarkTheme
+        }
+    }
+
 
     CompositionLocalProvider(
         AppColorsLocalComposition provides colors,
