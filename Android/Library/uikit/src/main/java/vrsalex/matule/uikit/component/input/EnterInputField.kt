@@ -1,5 +1,6 @@
 package vrsalex.matule.uikit.component.input
 
+import android.graphics.Color
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -47,7 +48,8 @@ fun EnterInputField(
     label: String? = null,
     error: String? = null,
     isPassword: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    isAlphaBorder: Boolean = false
 ) {
     val focusRequest = remember { FocusRequester() }
     var isFocused by remember { mutableStateOf(false) }
@@ -61,7 +63,7 @@ fun EnterInputField(
         when {
             error != null -> AppTheme.colors.error
             isFocused -> AppTheme.colors.accent.copy(alpha = 0.5f)
-            else -> AppTheme.colors.inputIcon
+            else -> if (!isAlphaBorder) AppTheme.colors.inputIcon else AppTheme.colors.inputStroke
         }
     )
 
