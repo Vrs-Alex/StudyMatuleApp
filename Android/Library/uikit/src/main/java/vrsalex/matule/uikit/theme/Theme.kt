@@ -8,6 +8,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -111,15 +112,13 @@ fun AppTheme(
     )
 
     val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
+    SideEffect {
+        val window = (view.context as Activity).window
+        val controller = WindowCompat.getInsetsController(window, view)
 
-            val insetsController = WindowCompat.getInsetsController(window, view)
+        controller.isAppearanceLightStatusBars = true
+        controller.isAppearanceLightNavigationBars = true
 
-            insetsController.isAppearanceLightStatusBars = !isDarkTheme
-            insetsController.isAppearanceLightNavigationBars = !isDarkTheme
-        }
     }
 
 
