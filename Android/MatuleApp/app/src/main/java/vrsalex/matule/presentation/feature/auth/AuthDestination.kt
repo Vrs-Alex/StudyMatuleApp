@@ -2,23 +2,22 @@ package vrsalex.matule.presentation.feature.auth
 
 import kotlinx.serialization.Serializable
 
-@Serializable
-sealed interface AuthRoute
+
 
 @Serializable
 data object AuthGraph
 
 @Serializable
-data object LoginRoute: AuthRoute
+data object LoginRoute
 
 @Serializable
-data object CreateProfileRoute: AuthRoute
+data object CreateProfileRoute
 
 @Serializable
-data object VerifyPhoneRoute: AuthRoute
+data object VerifyPhoneRoute
 
 @Serializable
-data object CreateAccountPasswordRoute: AuthRoute
+data object CreateAccountPasswordRoute
 
 @Serializable
-data object CreateAppPasswordRoute: AuthRoute
+data object CreateAppPasswordRoute

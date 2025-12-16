@@ -1,16 +1,17 @@
 package vrsalex.matule.presentation.feature.auth.login
 
 object LoginContract {
-    data class LoginState(
+
+    data class State(
         val email: String = "",
         val password: String = "",
         val isButtonEnabled: Boolean = false
     )
 
-    sealed interface LoginEvent {
-        data class EmailChanged(val email: String) : LoginEvent
-        data class PasswordChanged(val password: String) : LoginEvent
-        data class OnLoginClick(val email: String, val password: String) : LoginEvent
+    sealed interface Event {
+        data class EmailChanged(val email: String) : Event
+        data class PasswordChanged(val password: String) : Event
+        data class OnClick(val email: String, val password: String) : Event
     }
 
     sealed interface Effect {

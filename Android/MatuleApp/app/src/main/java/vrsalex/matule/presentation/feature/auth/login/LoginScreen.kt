@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import vrsalex.matule.R
-import vrsalex.matule.presentation.feature.auth.AuthRoute
 import vrsalex.matule.uikit.component.button.AppButton
 import vrsalex.matule.uikit.component.button.ButtonSize
 import vrsalex.matule.uikit.component.button.ButtonType
@@ -52,11 +51,10 @@ fun LoginScreen(
 }
 
 
-
 @Composable
 private fun LoginContent(
-    state: LoginContract.LoginState,
-    onEvent: (LoginContract.LoginEvent) -> Unit
+    state: LoginContract.State,
+    onEvent: (LoginContract.Event) -> Unit
     ) {
 
     Column(modifier = Modifier
@@ -88,22 +86,25 @@ private fun LoginContent(
             horizontalAlignment = Alignment.CenterHorizontally) {
             EnterInputField(
                 value = state.email,
-                onValueChange = { onEvent(LoginContract.LoginEvent.EmailChanged(it)) },
+                onValueChange = { onEvent(LoginContract.Event.EmailChanged(it)) },
                 placeholder = "example@mail.com",
-                label = "Вход по E-mail"
+                label = "Вход по E-mail",
+                isAlphaBorder = true
             )
             EnterInputField(
                 value = state.password,
-                onValueChange = { onEvent(LoginContract.LoginEvent.PasswordChanged(it)) },
+                onValueChange = { onEvent(LoginContract.Event.PasswordChanged(it)) },
                 placeholder = "",
                 label = "Пароль",
-                isPassword = true
+                isPassword = true,
+                isAlphaBorder = true
             )
             AppButton(
                 buttonSize = ButtonSize.BIG,
                 buttonType = if (state.isButtonEnabled) ButtonType.PRIMARY else ButtonType.INACTIVE,
-                onClick = { onEvent(LoginContract.LoginEvent.OnLoginClick(state.email, state.password)) },
-                text = "Далее"
+                onClick = { onEvent(LoginContract.Event.OnClick(state.email, state.password)) },
+                text = "Далее",
+                enabled = state.isButtonEnabled
             )
             Text(
                 text = "Забыл пароль?",

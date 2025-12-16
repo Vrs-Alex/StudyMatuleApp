@@ -3,34 +3,37 @@ package vrsalex.matule.presentation.feature.auth.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
+
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import vrsalex.matule.data.repository.AuthSessionRepository
+import javax.inject.Inject
 
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(): ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val authSessionRepository: AuthSessionRepository
+): ViewModel() {
 
-    private val _state = MutableStateFlow(LoginContract.LoginState())
-    val state get() = _state.asStateFlow()
+    private val _state = MutableStateFlow(LoginContract.State())
+    val state = _state.asStateFlow()
 
     private val _effect = Channel<LoginContract.Effect>()
     val effect = _effect.receiveAsFlow()
 
-    fun onEvent(event: LoginContract.LoginEvent) {
+    fun onEvent(event: LoginContract.Event) {
         when(event){
-            is LoginContract.LoginEvent.OnLoginClick -> {
+            is LoginContract.Event.OnClick -> {
                 login()
             }
-            is LoginContract.LoginEvent.EmailChanged -> {
+            is LoginContract.Event.EmailChanged -> {
                 _state.value = state.value.copy(email = event.email)
                 isButtonEnabled()
             }
-            is LoginContract.LoginEvent.PasswordChanged -> {
+            is LoginContract.Event.PasswordChanged -> {
                 _state.value = state.value.copy(password = event.password)
                 isButtonEnabled()
             }
@@ -47,6 +50,7 @@ class LoginViewModel @Inject constructor(): ViewModel() {
             try {
                 // TODO: val result = loginUseCase(state.value.email, state.value.password)
 
+                authSessionRepository.saveLoginData(state.value.email, state.value.password)
                 val mockUserStatus = "createProfile"
 
                 when (mockUserStatus) {
