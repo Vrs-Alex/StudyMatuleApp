@@ -63,7 +63,6 @@ fun AppButton(
 
 
     val buttonContentColor by animateColorAsState(
-        if (!enabled) AppTheme.colors.accentInactive else
         when  (buttonType) {
             ButtonType.PRIMARY, ButtonType.INACTIVE -> White
             ButtonType.SECONDARY -> AppTheme.colors.accent
