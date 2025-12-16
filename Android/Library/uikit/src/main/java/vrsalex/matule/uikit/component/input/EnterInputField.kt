@@ -114,7 +114,7 @@ fun EnterInputField(
                     }
                 }
             )
-            if (isPassword){
+            if (isPassword && value.isNotEmpty()){
                 val icon = if (showPassword) R.drawable.open_eyes
                     else R.drawable.close_eyes
 
