@@ -80,6 +80,8 @@ fun AppSelect(
                 scope.launch {
                     onItemSelected(null)
                     sheetState.hide()
+                }.invokeOnCompletion {
+                    showBottomSheet = false
                 }
             }
         )
