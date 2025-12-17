@@ -28,7 +28,6 @@ fun NavGraphBuilder.authGraph(
             )
         }
 
-
         composable<CreateProfileRoute> {
             CreateProfileScreen(
                 onNavigateToVerifyPhoneNumber = {
@@ -44,6 +43,7 @@ fun NavGraphBuilder.authGraph(
         composable<CreateAccountPasswordRoute> {
 
         }
+
 
         composable<CreateAppPasswordRoute> {
 

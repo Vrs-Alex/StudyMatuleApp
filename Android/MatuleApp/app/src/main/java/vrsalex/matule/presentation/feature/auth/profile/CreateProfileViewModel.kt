@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import vrsalex.matule.data.repository.AuthSessionRepository
+import vrsalex.matule.domain.repository.AuthSessionRepository
 import javax.inject.Inject
 
 
