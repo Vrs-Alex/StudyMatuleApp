@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import vrsalex.matule.presentation.auth.account_password.AccountPasswordScreen
+import vrsalex.matule.presentation.auth.app_password.AppPasswordScreen
 import vrsalex.matule.presentation.auth.login.LoginScreen
 import vrsalex.matule.presentation.auth.profile.CreateProfileScreen
 import vrsalex.matule.presentation.auth.verify_phone.VerifyPhoneScreen
@@ -12,7 +13,7 @@ import vrsalex.matule.presentation.auth.verify_phone.VerifyPhoneScreen
 fun NavGraphBuilder.authGraph(navController: NavController) {
 
     navigation<AuthGraph>(
-        startDestination = LoginDestination
+        startDestination = CreateAppPasswordDestination
     ){
         composable<LoginDestination> {
             LoginScreen(
@@ -63,7 +64,10 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
         }
 
         composable<CreateAppPasswordDestination> {
-
+            AppPasswordScreen(
+                onNext = { navController.navigate(LoginDestination){popUpTo(AuthGraph){ inclusive = true }} },
+                onSkip = { navController.navigate(LoginDestination){popUpTo(AuthGraph){ inclusive = true }} }
+            )
         }
     }
 
