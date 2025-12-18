@@ -43,8 +43,8 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
         composable<CreateProfileDestination> {
             CreateProfileScreen(
                 onCreateProfile = {
-                    navController.navigate(CreateAccountPasswordDestination){
-                        popUpTo(CreateProfileDestination){ inclusive = true }
+                    navController.navigate(VerifyAccountDestination){
+                        popUpTo(CreateProfileDestination){ inclusive = false }
                     }
                 }
             )
@@ -57,7 +57,8 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
                     navController.navigate(CreateAppPasswordDestination){
                         popUpTo(VerifyAccountDestination){ inclusive = true }
                     }
-                }
+                },
+                onBack = { navController.popBackStack() }
             )
         }
 

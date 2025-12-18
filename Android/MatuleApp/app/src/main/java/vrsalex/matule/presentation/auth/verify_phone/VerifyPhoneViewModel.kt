@@ -16,10 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class VerifyPhoneViewModel @Inject constructor(): ViewModel() {
 
-    init {
-        timer()
-    }
-
     private var timerJob: Job? = null
 
     private val _state = MutableStateFlow(VerifyPhoneContract.State())
@@ -27,6 +23,10 @@ class VerifyPhoneViewModel @Inject constructor(): ViewModel() {
 
     private val _effect = Channel<VerifyPhoneContract.Effect>()
     val effect = _effect.receiveAsFlow()
+
+    init {
+        timer()
+    }
 
     fun onEvent(event: VerifyPhoneContract.Event) {
         when(event) {
@@ -41,6 +41,12 @@ class VerifyPhoneViewModel @Inject constructor(): ViewModel() {
             VerifyPhoneContract.Event.ResendCodeClicked -> {
                 _state.update { it.copy(resendTime = 60) }
                 timer()
+            }
+
+            VerifyPhoneContract.Event.BackClicked -> {
+                viewModelScope.launch {
+                    _effect.send(VerifyPhoneContract.Effect.OnBack)
+                }
             }
         }
     }
