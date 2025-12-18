@@ -97,8 +97,8 @@ private fun AccountPasswordContent(
                 enabled = state.isEnabledButton,
                 text = "Далее"
             )
-            Spacer(Modifier.weight(3f))
         }
+        Spacer(Modifier.weight(3f))
     }
 
 }

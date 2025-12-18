@@ -55,10 +55,10 @@ fun EnterInputField(
     var isFocused by remember { mutableStateOf(false) }
     var showPassword by remember { mutableStateOf(false) }
 
-    val backgroundTextField by animateColorAsState(
+    val backgroundTextField =
         if (error != null) AppTheme.colors.error.copy(alpha = 0.1f)
         else AppTheme.colors.inputBg
-    )
+
     val borderColor by animateColorAsState(
         when {
             error != null -> AppTheme.colors.error
