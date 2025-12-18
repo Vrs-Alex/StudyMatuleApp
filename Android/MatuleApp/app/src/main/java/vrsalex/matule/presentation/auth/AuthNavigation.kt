@@ -13,7 +13,7 @@ import vrsalex.matule.presentation.auth.verify_phone.VerifyPhoneScreen
 fun NavGraphBuilder.authGraph(navController: NavController) {
 
     navigation<AuthGraph>(
-        startDestination = CreateAppPasswordDestination
+        startDestination = LoginDestination
     ){
         composable<LoginDestination> {
             LoginScreen(
