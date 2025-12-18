@@ -151,7 +151,7 @@ private fun KeyItem(
 ) {
     Box(modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center) {
         when (key) {
-            "" -> { /* Пусто */ }
+            "" -> {  }
             "delete" -> IconButton(onClick = onDeleteClick) {
                 Icon(painterResource(R.drawable.delete_icon), null, tint = Color.Unspecified)
             }
