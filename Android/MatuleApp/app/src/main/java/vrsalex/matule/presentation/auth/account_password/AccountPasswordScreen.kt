@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -51,7 +52,8 @@ private fun AccountPasswordContent(
     onEvent: (AccountPasswordContract.Event) -> Unit
 ) {
     Column(
-        Modifier.padding(20.dp).fillMaxSize()
+        Modifier.padding(20.dp).fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceAround
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(24.dp)) {
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -70,35 +72,43 @@ private fun AccountPasswordContent(
                 style = AppTheme.typography.textRegular
             )
         }
-        Spacer(Modifier.weight(1f))
-        Column() {
-            EnterInputField(
-                value = state.password,
-                onValueChange = { onEvent(AccountPasswordContract.Event.PasswordChanged(it)) },
-                placeholder = "",
-                label = "Новый Пароль",
-                isAlphaBorder = true,
-                isPassword = true
-            )
-            Spacer(Modifier.height(12.dp))
-            EnterInputField(
-                value = state.confirmPassword,
-                onValueChange = { onEvent(AccountPasswordContract.Event.ConfirmPasswordChanged(it)) },
-                placeholder = "",
-                label = "Повторите пароль",
-                isAlphaBorder = true,
-                isPassword = true
-            )
-            Spacer(Modifier.height(10.dp))
-            AppButton(
-                buttonSize = ButtonSize.BIG,
-                buttonType = if (state.isEnabledButton) ButtonType.PRIMARY else ButtonType.INACTIVE,
-                onClick = { onEvent(AccountPasswordContract.Event.OnNext) },
-                enabled = state.isEnabledButton,
-                text = "Далее"
-            )
+        Column(Modifier.fillMaxHeight(0.8f)) {
+            Spacer(Modifier.weight(1f))
+            Column() {
+                EnterInputField(
+                    value = state.password,
+                    onValueChange = { onEvent(AccountPasswordContract.Event.PasswordChanged(it)) },
+                    placeholder = "",
+                    label = "Новый Пароль",
+                    isAlphaBorder = true,
+                    isPassword = true
+                )
+                Spacer(Modifier.height(12.dp))
+                EnterInputField(
+                    value = state.confirmPassword,
+                    onValueChange = {
+                        onEvent(
+                            AccountPasswordContract.Event.ConfirmPasswordChanged(
+                                it
+                            )
+                        )
+                    },
+                    placeholder = "",
+                    label = "Повторите пароль",
+                    isAlphaBorder = true,
+                    isPassword = true
+                )
+                Spacer(Modifier.height(10.dp))
+                AppButton(
+                    buttonSize = ButtonSize.BIG,
+                    buttonType = if (state.isEnabledButton) ButtonType.PRIMARY else ButtonType.INACTIVE,
+                    onClick = { onEvent(AccountPasswordContract.Event.OnNext) },
+                    enabled = state.isEnabledButton,
+                    text = "Далее"
+                )
+            }
+            Spacer(Modifier.weight(3f))
         }
-        Spacer(Modifier.weight(3f))
     }
 
 }

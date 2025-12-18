@@ -7,6 +7,7 @@ import androidx.navigation.navigation
 import vrsalex.matule.presentation.auth.account_password.AccountPasswordScreen
 import vrsalex.matule.presentation.auth.login.LoginScreen
 import vrsalex.matule.presentation.auth.profile.CreateProfileScreen
+import vrsalex.matule.presentation.auth.verify_phone.VerifyPhoneScreen
 
 fun NavGraphBuilder.authGraph(navController: NavController) {
 
@@ -32,7 +33,7 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
             AccountPasswordScreen(
                 onNext = {
                     navController.navigate(CreateProfileDestination){
-                        popUpTo(CreateAccountPasswordDestination){ inclusive = true }
+                        popUpTo(CreateAccountPasswordDestination){ inclusive = false }
                     }
                 }
             )
@@ -50,9 +51,19 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
         }
 
 
-        composable<VerifyAccountDestination> {  }
+        composable<VerifyAccountDestination> {
+            VerifyPhoneScreen(
+                onNext = {
+                    navController.navigate(CreateAppPasswordDestination){
+                        popUpTo(VerifyAccountDestination){ inclusive = true }
+                    }
+                }
+            )
+        }
 
-        composable<CreateAppPasswordDestination> {  }
+        composable<CreateAppPasswordDestination> {
+
+        }
     }
 
 }
