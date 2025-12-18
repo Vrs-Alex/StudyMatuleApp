@@ -55,7 +55,7 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
             VerifyPhoneScreen(
                 onNext = {
                     navController.navigate(CreateAppPasswordDestination){
-                        popUpTo(VerifyAccountDestination){ inclusive = true }
+                        popUpTo(AuthGraph){ inclusive = true }
                     }
                 },
                 onBack = { navController.popBackStack() }
