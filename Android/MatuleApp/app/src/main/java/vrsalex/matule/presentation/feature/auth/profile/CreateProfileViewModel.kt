@@ -38,6 +38,14 @@ class CreateProfileViewModel @Inject constructor(
 
     fun navigateToVerifyPhoneNumber() = viewModelScope.launch {
         if (state.value.isButtonEnabled) {
+            authSessionRepository.saveProfileData(
+                _state.value.firstName,
+                _state.value.lastName,
+                _state.value.patronymic,
+                _state.value.birthDate,
+                _state.value.gender!!,
+                _state.value.phoneNumber
+            )
             _effect.send(CreateProfileContract.Effect.NavigateToVerifyPhone)
         }
     }

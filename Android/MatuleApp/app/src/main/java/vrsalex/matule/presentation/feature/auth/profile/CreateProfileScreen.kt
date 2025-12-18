@@ -100,7 +100,7 @@ private fun CreateProfileContent(
                 isAlphaBorder = true
             )
             AppSelect(
-                items = listOf("Мужчина", "Жензина"),
+                items = listOf("Мужской", "Женский"),
                 onItemSelected = { onEvent(CreateProfileContract.Event.GenderChanged(it)) },
                 selectedItem = state.gender,
                 placeholder = "Пол"

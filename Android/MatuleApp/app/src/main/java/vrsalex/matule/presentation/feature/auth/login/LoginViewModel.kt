@@ -1,5 +1,6 @@
 package vrsalex.matule.presentation.feature.auth.login
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,12 +11,14 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import vrsalex.matule.domain.repository.AuthSessionRepository
+import vrsalex.matule.domain.usecase.LoginUseCase
 import javax.inject.Inject
 
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val authSessionRepository: AuthSessionRepository
+    private val authSessionRepository: AuthSessionRepository,
+    private val loginUseCase: LoginUseCase
 ): ViewModel() {
 
     private val _state = MutableStateFlow(LoginContract.State())
@@ -47,8 +50,10 @@ class LoginViewModel @Inject constructor(
 
     private fun login() {
         viewModelScope.launch {
+            var res = ""
             try {
-                // TODO: val result = loginUseCase(state.value.email, state.value.password)
+                val result = loginUseCase(_state.value.email, _state.value.password)
+                res = result.toString()
 
                 authSessionRepository.saveLoginData(state.value.email, state.value.password)
                 val mockUserStatus = "createProfile"
@@ -61,7 +66,7 @@ class LoginViewModel @Inject constructor(
                         _effect.send(LoginContract.Effect.NavigateToCreateAppPassword)
                     }
                 }
-            } catch (e: Exception) { } finally { }
+            } catch (e: Exception) { } finally { Log.e("MYAPP", res) }
         }
     }
 
