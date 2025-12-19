@@ -10,10 +10,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import vrsalex.matule.domain.usecase.setting.SavePinCodeUseCase
 import javax.inject.Inject
 
 @HiltViewModel
-class AppPasswordViewModel @Inject constructor() : ViewModel() {
+class AppPasswordViewModel @Inject constructor(
+    private val savePinCodeUseCase: SavePinCodeUseCase
+) : ViewModel() {
 
     private val _state = MutableStateFlow(AppPasswordContract.State())
     val state = _state.asStateFlow()
@@ -29,6 +32,7 @@ class AppPasswordViewModel @Inject constructor() : ViewModel() {
 
                     if (state.value.isPinCodeComplete) {
                         viewModelScope.launch {
+                            savePinCodeUseCase(state.value.pinCode)
                             delay(250)
                             _effect.send(AppPasswordContract.Effect.OnNext)
                         }

@@ -1,0 +1,15 @@
+package vrsalex.matule.data.remote.dto.auth
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class SignUpRequest(
+    val email: String,
+    val password: String,
+    val firstName: String,
+    val lastName: String,
+    val patronymic: String,
+    val birthday: String,
+    val gender: String,
+    val phoneNum: String
+)

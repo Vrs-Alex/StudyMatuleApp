@@ -72,7 +72,7 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     // DataStore
-    implementation(libs.androidx.datastore)
+    implementation(libs.androidx.datastore.preferences)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
