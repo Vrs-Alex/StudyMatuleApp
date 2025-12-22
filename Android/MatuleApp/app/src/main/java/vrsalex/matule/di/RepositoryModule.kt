@@ -6,8 +6,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import vrsalex.matule.data.repository.AppSettingRepositoryImpl
 import vrsalex.matule.data.repository.AuthRepositoryImpl
+import vrsalex.matule.data.repository.HomeRepositoryImpl
 import vrsalex.matule.domain.repository.AppSettingRepository
 import vrsalex.matule.domain.repository.AuthRepository
+import vrsalex.matule.domain.repository.HomeRepository
 import javax.inject.Singleton
 
 @Module
@@ -26,4 +28,9 @@ interface RepositoryModule {
         appSettingRepositoryImpl: AppSettingRepositoryImpl
     ): AppSettingRepository
 
+    @Binds
+    @Singleton
+    fun provideHomeRepository(
+        homeRepositoryImpl: HomeRepositoryImpl
+    ): HomeRepository
 }

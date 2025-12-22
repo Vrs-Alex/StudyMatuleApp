@@ -11,7 +11,12 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.create
+import vrsalex.matule.data.local.datastore.TokenManager
+import vrsalex.matule.data.remote.AuthInterceptor
 import vrsalex.matule.data.remote.api.AuthApi
+import vrsalex.matule.data.remote.api.HomeApi
+import vrsalex.matule.data.repository.AuthRepositoryImpl
+import vrsalex.matule.domain.repository.AuthRepository
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -26,11 +31,14 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(
+        authInterceptor: AuthInterceptor
+    ): OkHttpClient {
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
         return OkHttpClient.Builder()
+            .addInterceptor(authInterceptor)
             .addInterceptor(logging)
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
@@ -55,5 +63,8 @@ object NetworkModule {
     @Singleton
     fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create<AuthApi>()
 
+    @Provides
+    @Singleton
+    fun provideHomeAPi(retrofit: Retrofit): HomeApi = retrofit.create<HomeApi>()
 
 }
