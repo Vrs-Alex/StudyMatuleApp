@@ -1,12 +1,16 @@
 package vrsalex.matule.data.remote
 
 import android.util.Log
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Authenticator
+import okhttp3.Dispatcher
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
+import retrofit2.HttpException
 import vrsalex.matule.data.local.datastore.TokenManager
 import vrsalex.matule.data.remote.api.AuthApi
 import vrsalex.matule.data.remote.dto.auth.AuthResponse
@@ -25,53 +29,46 @@ class TokenAuthenticator @Inject constructor(
         if (response.priorResponse != null) return null
 
         synchronized(this){
-            val currentToken = runBlocking { tokenManager.getAccessToken().first() }
-            val refreshToken = runBlocking { tokenManager.getRefreshToken().first() }
-            if (currentToken == null || refreshToken == null) {
-                runBlocking { authEventRepository.logout() }
-                return null
-            }
+            return runBlocking(Dispatchers.IO) {
+                try {
+                    val currentAccessToken = tokenManager.getAccessToken().first()
+                    val currentRefreshToken = tokenManager.getRefreshToken().first()
 
-            val requestToken = response.request.header("Authorization")?.removePrefix("Bearer ")
-
-            val tokenToUse = if (requestToken != currentToken) {
-                currentToken
-            } else {
-                val authResponse = refreshToken(refreshToken)
-                if (authResponse != null) {
-                        runBlocking {
-                            tokenManager.saveAccessToken(authResponse.accessToken)
-                            tokenManager.saveRefreshToken(authResponse.refreshToken)
-                        }
-                        authResponse.accessToken
-                    } else {
-                        null
+                    if (currentAccessToken == null || currentRefreshToken == null) {
+                        authEventRepository.logout()
+                        return@runBlocking null
                     }
-            }
+                    val requestToken = response.request.header("Authorization")
+                        ?.removePrefix("Bearer ")
+                    if (requestToken != currentAccessToken) {
+                        return@runBlocking response.request.newBuilder()
+                            .header("Authorization", "Bearer $currentAccessToken")
+                            .build()
+                    }
+                    val newAuthResponse = try {
+                        authApi.get().refreshToken(RefreshTokenRequest(currentRefreshToken))
+                    } catch (e: HttpException) {
+                        if (e.code() == 401 || e.code() == 403) {
+                            authEventRepository.logout()
+                            return@runBlocking null
+                        } else {
+                            throw e
+                        }
+                    } catch (e: Exception) {
+                        throw e
+                    }
 
-            return if (tokenToUse != null) {
-                response.request.newBuilder()
-                    .header("Authorization", "Bearer $tokenToUse")
-                    .build()
-            } else {
-                Log.e("MYAPP", "123")
-                runBlocking { authEventRepository.logout() }
-                null
-            }
-        }
-    }
+                    tokenManager.saveAccessToken(newAuthResponse.accessToken)
+                    tokenManager.saveRefreshToken(newAuthResponse.refreshToken)
+                    response.request.newBuilder()
+                        .header("Authorization", "Bearer ${newAuthResponse.accessToken}")
+                        .build()
 
-    private fun refreshToken(currentToken: String): AuthResponse? = runBlocking {
-        Log.d("AUTH", "1. Пытаюсь обновить токен...")
-        try {
-            val apiResponse = authApi.get().refreshToken(RefreshTokenRequest(currentToken))
-            Log.d("AUTH", "2. Успех!")
-            apiResponse
-        } catch (t: Throwable) { // Используем Throwable вместо Exception
-            Log.e("AUTH", "3. Поймали ошибку: ${t.message}")
-            null
-        } finally {
-            Log.d("AUTH", "4. Блок finally сработал")
+                } catch (e: Exception) {
+                    Log.e("AUTH", "Не удалось обновить токен: ${e.message}")
+                    null
+                }
+            }
         }
     }
 }
