@@ -1,5 +1,6 @@
-package vrsalex.matule.presentation.auth
+package vrsalex.matule.presentation.auth.navigation
 
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -60,7 +61,12 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
                         popUpTo(AuthGraph){ inclusive = true }
                     }
                 },
-                onBack = { navController.popBackStack() }
+                onBack = { navController.popBackStack() },
+                onRegistrationRestart = {
+                    navController.navigate(LoginDestination){
+                        popUpTo(AuthGraph){ inclusive = true }
+                    }
+                }
             )
         }
 

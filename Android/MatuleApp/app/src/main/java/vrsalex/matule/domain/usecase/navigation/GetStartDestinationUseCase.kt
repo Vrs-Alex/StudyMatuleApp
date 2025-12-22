@@ -3,10 +3,8 @@ package vrsalex.matule.domain.usecase.navigation
 import kotlinx.coroutines.flow.first
 import vrsalex.matule.data.local.datastore.AppSettingManager
 import vrsalex.matule.data.local.datastore.TokenManager
-import vrsalex.matule.domain.repository.AuthRepository
-import vrsalex.matule.presentation.auth.AuthGraph
+import vrsalex.matule.presentation.auth.navigation.AuthGraph
 import vrsalex.matule.presentation.navigation.bottom.BottomTabsGraph
-import vrsalex.matule.presentation.navigation.bottom.HomeGraph
 import vrsalex.matule.presentation.setting.VerifyPinCodeDestination
 import javax.inject.Inject
 

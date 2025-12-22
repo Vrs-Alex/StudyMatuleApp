@@ -39,7 +39,8 @@ import vrsalex.matule.uikit.theme.AppTheme
 fun VerifyPhoneScreen(
     viewModel: VerifyPhoneViewModel = hiltViewModel(),
     onNext: () -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onRegistrationRestart: () -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -48,6 +49,7 @@ fun VerifyPhoneScreen(
             when(effect){
                 VerifyPhoneContract.Effect.OnNext -> onNext()
                 VerifyPhoneContract.Effect.OnBack -> onBack()
+                VerifyPhoneContract.Effect.OnRegistrationRestart -> onRegistrationRestart()
             }
         }
     }

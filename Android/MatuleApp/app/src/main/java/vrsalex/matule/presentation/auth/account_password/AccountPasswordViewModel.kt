@@ -10,10 +10,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import vrsalex.matule.data.repository.AuthSessionRepositoryImpl
 import javax.inject.Inject
 
 @HiltViewModel
-class AccountPasswordViewModel @Inject constructor(): ViewModel() {
+class AccountPasswordViewModel @Inject constructor(
+    private val authSessionRepositoryImpl: AuthSessionRepositoryImpl
+): ViewModel() {
 
     private val _state = MutableStateFlow(AccountPasswordContract.State())
     val state = _state.asStateFlow()
@@ -30,8 +33,10 @@ class AccountPasswordViewModel @Inject constructor(): ViewModel() {
     }
 
     fun onNext() = viewModelScope.launch {
-
-        _effect.send(AccountPasswordContract.Effect.OnNext)
+        if (state.value.isEnabledButton) {
+            authSessionRepositoryImpl.data.update { it?.copy(password = state.value.password) }
+            _effect.send(AccountPasswordContract.Effect.OnNext)
+        }
     }
 
 }

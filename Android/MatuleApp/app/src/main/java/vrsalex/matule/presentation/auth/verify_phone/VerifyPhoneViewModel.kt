@@ -11,10 +11,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import vrsalex.matule.data.repository.AuthSessionRepositoryImpl
+import vrsalex.matule.domain.model.auth.VerifyResult
+import vrsalex.matule.domain.repository.AuthRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class VerifyPhoneViewModel @Inject constructor(): ViewModel() {
+class VerifyPhoneViewModel @Inject constructor(
+    private val authSessionRepositoryImpl: AuthSessionRepositoryImpl,
+    private val authRepository: AuthRepository
+): ViewModel() {
 
     private var timerJob: Job? = null
 
@@ -52,9 +58,22 @@ class VerifyPhoneViewModel @Inject constructor(): ViewModel() {
     }
 
     fun checkCode() = viewModelScope.launch {
-        if (state.value.code == "1234"){
-            _effect.send(VerifyPhoneContract.Effect.OnNext)
+        val res = authRepository.verify(
+            authSessionRepositoryImpl.data.value!!.phoneNum,
+            state.value.code
+        )
+        when(res) {
+            VerifyResult.Success -> {
+                _effect.send(VerifyPhoneContract.Effect.OnNext)
+            }
+            VerifyResult.TimeExpired -> {
+                _effect.send(VerifyPhoneContract.Effect.OnRegistrationRestart)
+            }
+            is VerifyResult.Error -> {
+                _effect.send(VerifyPhoneContract.Effect.OnRegistrationRestart)
+            }
         }
+        authSessionRepositoryImpl.clearData()
     }
 
     fun timer() {

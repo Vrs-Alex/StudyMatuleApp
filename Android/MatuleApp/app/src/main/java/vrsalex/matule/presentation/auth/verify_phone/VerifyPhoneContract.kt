@@ -21,6 +21,7 @@ object VerifyPhoneContract {
     sealed interface Effect {
         data object OnNext: Effect
         data object OnBack: Effect
+        data object OnRegistrationRestart: Effect
     }
 
 }

@@ -9,12 +9,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import vrsalex.matule.domain.model.auth.AuthResult
+import vrsalex.matule.data.repository.AuthRepositoryImpl
+import vrsalex.matule.data.repository.AuthSessionRepositoryImpl
+import vrsalex.matule.domain.model.auth.LoginResult
 import vrsalex.matule.domain.usecase.auth.LoginUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
+    private val authSessionRepositoryImpl: AuthSessionRepositoryImpl,
     private val loginUseCase: LoginUseCase
 ) : ViewModel() {
 
@@ -37,16 +40,17 @@ class LoginViewModel @Inject constructor(
         val result = loginUseCase(state.value.email, state.value.password)
         _state.update { it.copy(isLoading = false)}
         when(result){
-            AuthResult.Success -> {
+            LoginResult.Success -> {
                 _effect.send(LoginContract.Effect.OnLogin)
             }
-            AuthResult.InvalidCredentials -> {
+            LoginResult.InvalidCredentials -> {
 
             }
-            AuthResult.UserNotFound -> {
+            LoginResult.UserNotFound -> {
+                authSessionRepositoryImpl.data.update { it?.copy(email = state.value.email) }
                 _effect.send(LoginContract.Effect.OnRegister)
             }
-            is AuthResult.Error -> {
+            is LoginResult.Error -> {
 
             }
         }

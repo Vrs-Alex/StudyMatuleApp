@@ -11,16 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
-import vrsalex.matule.presentation.auth.AuthGraph
-import vrsalex.matule.presentation.auth.authGraph
+import vrsalex.matule.presentation.auth.navigation.authGraph
 import vrsalex.matule.presentation.catalog.catalogGraph
 import vrsalex.matule.presentation.home.homeGraph
 import vrsalex.matule.presentation.navigation.bottom.BottomTabsGraph
@@ -29,7 +26,6 @@ import vrsalex.matule.presentation.profile.profileGraph
 import vrsalex.matule.presentation.project.projectGraph
 import vrsalex.matule.presentation.setting.appSettingGraph
 import vrsalex.matule.uikit.theme.AppTheme
-import vrsalex.matule.uikit.theme.Gradient1
 import vrsalex.matule.uikit.theme.Gradient2
 import vrsalex.matule.uikit.theme.White
 

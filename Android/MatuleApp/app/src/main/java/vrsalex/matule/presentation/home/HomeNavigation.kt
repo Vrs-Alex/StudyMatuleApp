@@ -9,13 +9,11 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import vrsalex.matule.presentation.auth.CreateAppPasswordDestination
 import vrsalex.matule.presentation.home.test.HomeTestViewModel
 import vrsalex.matule.presentation.navigation.bottom.HomeGraph
 import vrsalex.matule.uikit.component.button.AppButton
 import vrsalex.matule.uikit.component.button.ButtonSize
 import vrsalex.matule.uikit.component.button.ButtonType
-import javax.inject.Inject
 
 fun NavGraphBuilder.homeGraph(navController: NavController) {
 

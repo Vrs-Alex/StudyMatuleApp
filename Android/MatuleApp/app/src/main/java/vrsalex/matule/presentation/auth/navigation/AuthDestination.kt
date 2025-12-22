@@ -1,4 +1,4 @@
-package vrsalex.matule.presentation.auth
+package vrsalex.matule.presentation.auth.navigation
 
 import kotlinx.serialization.Serializable
 
