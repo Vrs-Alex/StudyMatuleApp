@@ -12,4 +12,6 @@ class AppSettingManager @Inject constructor(
 
     fun getPinCode(): Flow<String?> = dataStoreManager.getPinCode()
 
+    suspend fun clearAll() = dataStoreManager.clearAll()
+
 }

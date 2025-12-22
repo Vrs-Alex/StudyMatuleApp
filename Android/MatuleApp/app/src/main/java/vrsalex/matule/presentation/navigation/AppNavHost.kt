@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,6 +18,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
+import vrsalex.matule.domain.repository.AuthEvent
+import vrsalex.matule.presentation.auth.navigation.AuthGraph
 import vrsalex.matule.presentation.auth.navigation.authGraph
 import vrsalex.matule.presentation.catalog.catalogGraph
 import vrsalex.matule.presentation.home.homeGraph
@@ -34,6 +37,19 @@ fun AppNavHost(navController: NavHostController,
                innerPadding: PaddingValues,
                viewModel: RootNavViewModel = hiltViewModel()) {
     val startDestination by viewModel.startDestination.collectAsStateWithLifecycle()
+
+
+    LaunchedEffect(Unit) {
+        viewModel.authEvent.collect { event ->
+            when(event){
+                AuthEvent.Logout -> {
+                    navController.navigate(AuthGraph){
+                        popUpTo(0){ inclusive = true }
+                    }
+                }
+            }
+        }
+    }
 
     AnimatedContent(targetState = startDestination) { startDestination ->
         if (startDestination == null) {

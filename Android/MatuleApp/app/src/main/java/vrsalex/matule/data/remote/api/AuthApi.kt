@@ -5,6 +5,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import vrsalex.matule.data.remote.dto.auth.AuthResponse
 import vrsalex.matule.data.remote.dto.auth.LogoutRequest
+import vrsalex.matule.data.remote.dto.auth.RefreshTokenRequest
 import vrsalex.matule.data.remote.dto.auth.SignInRequest
 import vrsalex.matule.data.remote.dto.auth.SignUpRequest
 import vrsalex.matule.data.remote.dto.auth.VerifySignUpRequest
@@ -23,5 +24,8 @@ interface AuthApi {
 
     @POST("auth/logout")
     suspend fun logout(@Body request: LogoutRequest): Response<Unit> // 204 401
+
+    @POST("auth/refresh-token")
+    suspend fun refreshToken(@Body request: RefreshTokenRequest): AuthResponse
 
 }

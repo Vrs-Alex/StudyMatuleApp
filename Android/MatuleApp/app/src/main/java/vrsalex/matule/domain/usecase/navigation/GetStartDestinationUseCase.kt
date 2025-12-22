@@ -15,7 +15,8 @@ class GetStartDestinationUseCase @Inject constructor(
 
     suspend operator fun invoke(): Any {
         val hasTokens = tokenManager.isHaveTokens()
-        if (appSettingManager.getPinCode().first() != null)
+        if (appSettingManager.getPinCode().first() != null
+            && !hasTokens)
             return VerifyPinCodeDestination
         if (hasTokens)
             return BottomTabsGraph
