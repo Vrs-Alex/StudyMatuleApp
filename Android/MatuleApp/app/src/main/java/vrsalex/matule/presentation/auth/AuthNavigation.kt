@@ -9,6 +9,7 @@ import vrsalex.matule.presentation.auth.app_password.AppPasswordScreen
 import vrsalex.matule.presentation.auth.login.LoginScreen
 import vrsalex.matule.presentation.auth.profile.CreateProfileScreen
 import vrsalex.matule.presentation.auth.verify_phone.VerifyPhoneScreen
+import vrsalex.matule.presentation.navigation.bottom.BottomTabsGraph
 
 fun NavGraphBuilder.authGraph(navController: NavController) {
 
@@ -65,8 +66,8 @@ fun NavGraphBuilder.authGraph(navController: NavController) {
 
         composable<CreateAppPasswordDestination> {
             AppPasswordScreen(
-                onNext = { navController.navigate(LoginDestination){popUpTo(AuthGraph){ inclusive = true }} },
-                onSkip = { navController.navigate(LoginDestination){popUpTo(AuthGraph){ inclusive = true }} }
+                onNext = { navController.navigate(BottomTabsGraph){popUpTo(AuthGraph){ inclusive = true }} },
+                onSkip = { navController.navigate(BottomTabsGraph){popUpTo(AuthGraph){ inclusive = true }} }
             )
         }
     }

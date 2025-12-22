@@ -1,5 +1,6 @@
 package vrsalex.matule.presentation.navigation
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,9 +18,15 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.navigation
 import vrsalex.matule.presentation.auth.AuthGraph
 import vrsalex.matule.presentation.auth.authGraph
+import vrsalex.matule.presentation.catalog.catalogGraph
 import vrsalex.matule.presentation.home.homeGraph
+import vrsalex.matule.presentation.navigation.bottom.BottomTabsGraph
+import vrsalex.matule.presentation.navigation.bottom.HomeGraph
+import vrsalex.matule.presentation.profile.profileGraph
+import vrsalex.matule.presentation.project.projectGraph
 import vrsalex.matule.presentation.setting.appSettingGraph
 import vrsalex.matule.uikit.theme.AppTheme
 import vrsalex.matule.uikit.theme.Gradient1
@@ -32,34 +39,39 @@ fun AppNavHost(navController: NavHostController,
                viewModel: RootNavViewModel = hiltViewModel()) {
     val startDestination by viewModel.startDestination.collectAsStateWithLifecycle()
 
-    if (startDestination == null) {
-        Box(
-            modifier = Modifier.fillMaxSize()
-                .background(Gradient2),
-            contentAlignment = Alignment.Center
-        ){
-            Text(
-                text = "Matule",
-                style = AppTheme.typography.textRegular.copy(
-                    fontSize = 40.sp,
-                    lineHeight = 64.sp,
-                    letterSpacing = 0.sp
-                ),
-                color = White
-            )
-        }
-    } else {
-        NavHost(
-            modifier = Modifier.padding(innerPadding),
-            navController = navController,
-            startDestination = startDestination!!
-        ) {
-            authGraph(navController)
+    AnimatedContent(targetState = startDestination) { startDestination ->
+        if (startDestination == null) {
+            Box(
+                modifier = Modifier.fillMaxSize()
+                    .background(Gradient2),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Matule",
+                    style = AppTheme.typography.textRegular.copy(
+                        fontSize = 40.sp,
+                        lineHeight = 64.sp,
+                        letterSpacing = 0.sp
+                    ),
+                    color = White
+                )
+            }
+        } else {
+            NavHost(
+                modifier = Modifier.padding(innerPadding),
+                navController = navController,
+                startDestination = startDestination
+            ) {
+                authGraph(navController)
+                appSettingGraph(navController)
 
-            appSettingGraph(navController)
-
-            homeGraph(navController)
-
+                navigation<BottomTabsGraph>(startDestination = HomeGraph) {
+                    homeGraph(navController)
+                    catalogGraph(navController)
+                    projectGraph(navController)
+                    profileGraph(navController)
+                }
+            }
         }
     }
 }

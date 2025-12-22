@@ -5,7 +5,8 @@ import vrsalex.matule.data.local.datastore.AppSettingManager
 import vrsalex.matule.data.local.datastore.TokenManager
 import vrsalex.matule.domain.repository.AuthRepository
 import vrsalex.matule.presentation.auth.AuthGraph
-import vrsalex.matule.presentation.home.HomeGraph
+import vrsalex.matule.presentation.navigation.bottom.BottomTabsGraph
+import vrsalex.matule.presentation.navigation.bottom.HomeGraph
 import vrsalex.matule.presentation.setting.VerifyPinCodeDestination
 import javax.inject.Inject
 
@@ -15,10 +16,11 @@ class GetStartDestinationUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): Any {
+        val hasTokens = tokenManager.isHaveTokens()
         if (appSettingManager.getPinCode().first() != null)
             return VerifyPinCodeDestination
-        if (tokenManager.isHaveTokens())
-            return HomeGraph
+        if (hasTokens)
+            return BottomTabsGraph
         return AuthGraph
     }
 
