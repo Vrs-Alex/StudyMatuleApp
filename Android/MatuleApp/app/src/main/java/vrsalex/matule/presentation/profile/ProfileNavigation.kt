@@ -12,7 +12,7 @@ fun NavGraphBuilder.profileGraph(navController: NavController) {
     navigation<ProfileGraph>(startDestination = ProfileDestination) {
 
         composable<ProfileDestination>{
-
+            ProfileScreen()
         }
     }
 
