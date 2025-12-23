@@ -10,13 +10,11 @@ import vrsalex.matule.domain.port.security.JwtService
 
 @Component
 class GetProfileDataCommandHandler(
-    private val userRepository: UserRepository,
-    private val jwtService: JwtService,
+    private val userRepository: UserRepository
 ) {
 
     operator fun invoke(command: GetProfileDataCommand): ProfileDataResult {
-        val userId = jwtService.getUserIdFromToken(command.token)
-        val user = userRepository.findById(userId)
+        val user = userRepository.findById(command.userId)
             ?: throw UserNotExistException("Пользователь не найден")
 
         return ProfileDataResult(

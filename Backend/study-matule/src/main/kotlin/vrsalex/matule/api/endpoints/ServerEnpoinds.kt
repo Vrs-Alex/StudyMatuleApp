@@ -16,6 +16,13 @@ object ServerEndpoints {
         const val PROFILE_PREFIX = "/profile"
         const val PROFILE_GET_DATA_ENDPOINT = "$API_PREFIX$PROFILE_PREFIX/get"
 
+
+        const val PROJECT_PREFIX = "/project"
+        const val USER_PROJECTS_GET_ENDPOINT = "$API_PREFIX$PROJECT_PREFIX/get"
+        const val USER_PROJECTS_ADD_ENDPOINT = "$API_PREFIX$PROJECT_PREFIX/add"
+        const val USER_PROJECTS_REMOVE_ENDPOINT = "$API_PREFIX$PROJECT_PREFIX/remove"
+
+
         val PUBLIC_ENDPOINTS = setOf(
             AUTH_REFRESH_TOKEN_ENDPOINT,
             AUTH_USER_REGISTER_ENDPOINT,
