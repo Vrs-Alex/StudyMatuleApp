@@ -9,11 +9,13 @@ import vrsalex.matule.data.repository.AuthEventRepositoryImpl
 import vrsalex.matule.data.repository.AuthRepositoryImpl
 import vrsalex.matule.data.repository.HomeRepositoryImpl
 import vrsalex.matule.data.repository.ProfileRepositoryImpl
+import vrsalex.matule.data.repository.ProjectRepositoryImpl
 import vrsalex.matule.domain.repository.AppSettingRepository
 import vrsalex.matule.domain.repository.AuthEventRepository
 import vrsalex.matule.domain.repository.AuthRepository
 import vrsalex.matule.domain.repository.HomeRepository
 import vrsalex.matule.domain.repository.ProfileRepository
+import vrsalex.matule.domain.repository.ProjectRepository
 import javax.inject.Singleton
 
 @Module
@@ -52,4 +54,10 @@ interface RepositoryModule {
         profileRepositoryImpl: ProfileRepositoryImpl
     ): ProfileRepository
 
+
+    @Binds
+    @Singleton
+    fun provideProjectRepository(
+        projectRepositoryImpl: ProjectRepositoryImpl
+    ): ProjectRepository
 }

@@ -13,6 +13,7 @@ import vrsalex.matule.domain.repository.AuthEventRepository
 import vrsalex.matule.domain.usecase.navigation.GetStartDestinationUseCase
 import vrsalex.matule.domain.usecase.profile.SyncProfileUseCase
 import vrsalex.matule.presentation.navigation.bottom.BottomTabsGraph
+import vrsalex.matule.presentation.setting.VerifyPinCodeDestination
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,7 +36,8 @@ class RootNavViewModel @Inject constructor(
     private fun determineStartDestination() {
         viewModelScope.launch {
             val destination = getStartDestinationUseCase()
-            if (destination == BottomTabsGraph) launch { syncProfileUseCase() }
+            if (destination == BottomTabsGraph
+                || destination == VerifyPinCodeDestination) launch { syncProfileUseCase() }
             delay(450)
             _startDestination.value = destination
         }
