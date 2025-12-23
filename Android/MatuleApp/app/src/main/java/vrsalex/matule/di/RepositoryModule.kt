@@ -8,10 +8,12 @@ import vrsalex.matule.data.repository.AppSettingRepositoryImpl
 import vrsalex.matule.data.repository.AuthEventRepositoryImpl
 import vrsalex.matule.data.repository.AuthRepositoryImpl
 import vrsalex.matule.data.repository.HomeRepositoryImpl
+import vrsalex.matule.data.repository.ProfileRepositoryImpl
 import vrsalex.matule.domain.repository.AppSettingRepository
 import vrsalex.matule.domain.repository.AuthEventRepository
 import vrsalex.matule.domain.repository.AuthRepository
 import vrsalex.matule.domain.repository.HomeRepository
+import vrsalex.matule.domain.repository.ProfileRepository
 import javax.inject.Singleton
 
 @Module
@@ -42,5 +44,12 @@ interface RepositoryModule {
     fun provideAuthEventRepository(
         authEventRepositoryImpl: AuthEventRepositoryImpl
     ): AuthEventRepository
+
+
+    @Binds
+    @Singleton
+    fun provideProfileRepository(
+        profileRepositoryImpl: ProfileRepositoryImpl
+    ): ProfileRepository
 
 }

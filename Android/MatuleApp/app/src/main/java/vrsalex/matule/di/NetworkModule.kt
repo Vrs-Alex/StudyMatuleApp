@@ -17,6 +17,7 @@ import vrsalex.matule.data.remote.AuthInterceptor
 import vrsalex.matule.data.remote.TokenAuthenticator
 import vrsalex.matule.data.remote.api.AuthApi
 import vrsalex.matule.data.remote.api.HomeApi
+import vrsalex.matule.data.remote.api.ProfileApi
 import vrsalex.matule.data.repository.AuthRepositoryImpl
 import vrsalex.matule.domain.repository.AuthRepository
 import java.util.concurrent.TimeUnit
@@ -99,5 +100,9 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHomeAPi(retrofit: Retrofit): HomeApi = retrofit.create<HomeApi>()
+
+    @Provides
+    @Singleton
+    fun provideProfileApi(retrofit: Retrofit): ProfileApi = retrofit.create<ProfileApi>()
 
 }

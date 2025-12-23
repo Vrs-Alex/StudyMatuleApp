@@ -10,12 +10,14 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import vrsalex.matule.domain.usecase.profile.SyncProfileUseCase
 import vrsalex.matule.domain.usecase.setting.SavePinCodeUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class AppPasswordViewModel @Inject constructor(
-    private val savePinCodeUseCase: SavePinCodeUseCase
+    private val savePinCodeUseCase: SavePinCodeUseCase,
+    private val syncProfileUseCase: SyncProfileUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(AppPasswordContract.State())
@@ -32,6 +34,7 @@ class AppPasswordViewModel @Inject constructor(
 
                     if (state.value.isPinCodeComplete) {
                         viewModelScope.launch {
+                            launch { syncProfileUseCase() }
                             savePinCodeUseCase(state.value.pinCode)
                             delay(250)
                             _effect.send(AppPasswordContract.Effect.OnNext)
@@ -43,7 +46,10 @@ class AppPasswordViewModel @Inject constructor(
                 _state.update { it.copy(pinCode = it.pinCode.dropLast(1)) }
             }
             AppPasswordContract.Event.OnSkipped -> {
-                viewModelScope.launch { _effect.send(AppPasswordContract.Effect.OnSkipped) }
+                viewModelScope.launch {
+                    launch { syncProfileUseCase() }
+                    _effect.send(AppPasswordContract.Effect.OnSkipped)
+                }
             }
         }
     }

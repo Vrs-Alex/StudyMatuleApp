@@ -15,9 +15,9 @@ class TokenManager @Inject constructor(
 
     suspend fun clearTokens() = dataStoreManager.clearTokens()
 
-    suspend fun getRefreshToken(): Flow<String?> = dataStoreManager.getRefreshToken()
+    fun getRefreshToken(): Flow<String?> = dataStoreManager.getRefreshToken()
 
-    suspend fun getAccessToken(): Flow<String?> = dataStoreManager.getAccessToken()
+    fun getAccessToken(): Flow<String?> = dataStoreManager.getAccessToken()
 
     suspend fun isHaveTokens(): Boolean {
         return getAccessToken().first() != null
