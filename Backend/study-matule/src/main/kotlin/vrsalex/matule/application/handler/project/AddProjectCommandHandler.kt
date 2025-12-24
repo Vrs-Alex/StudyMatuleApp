@@ -22,7 +22,7 @@ class AddProjectCommandHandler(
             ?: throw ProjectNotExistException("Проект не найден")
 
         val project = Project(
-            id = null, name = command.name, startDate = command.startDate,
+            id = command.id, name = command.name, startDate = command.startDate,
             endDate = command.endDate, url = command.url, type = type,
             category = category, createdAt = LocalDateTime.now(), updatedAt = LocalDateTime.now())
 
