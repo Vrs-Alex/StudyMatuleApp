@@ -7,7 +7,10 @@ import vrsalex.matule.data.local.mapper.toDomain
 import vrsalex.matule.data.local.mapper.toEntity
 import vrsalex.matule.data.remote.api.ProjectApi
 import vrsalex.matule.data.remote.dto.project.AddProjectRequest
+import vrsalex.matule.data.remote.mapper.toAddRequest
+import vrsalex.matule.data.remote.mapper.toDomain
 import vrsalex.matule.domain.model.project.Project
+import vrsalex.matule.domain.model.project.ProjectResult
 import vrsalex.matule.domain.repository.ProjectRepository
 import javax.inject.Inject
 
@@ -23,23 +26,36 @@ class ProjectRepositoryImpl @Inject constructor(
             }
     }
 
-    override suspend fun addProject(project: Project) {
-        try {
-            projectDao.insertProject(project.toEntity())
+    override suspend fun addProject(project: Project): ProjectResult {
+        return try {
+            val localId = try {
+                projectDao.insertProject(project.toEntity())
+            } catch (e: Exception) {
+                return ProjectResult.DatabaseError("Ошибка сохранения проекта")
+            }
 
-            projectApi.addProject(AddProjectRequest(
-                name = project.name,
-                startDate = project.startDate,
-                endDate = project.endDate,
-                url = project.url,
-                typeId = project.type.id,
-                categoryId = project.category.id
-            ))
-        } catch (e: Exception) {}
+            try {
+                projectApi.addProject(project.toAddRequest().copy(id = localId))
+            } catch (e: Exception) {
+                return ProjectResult.NetworkError("Данные сохранены локально, но не отправлены на сервер")
+            }
+
+            ProjectResult.Success
+        } catch (e: Exception) {
+            ProjectResult.UnknownError(e.message ?: "Ошибка")
+        }
     }
 
     override suspend fun updateProject(project: Project) {
 
+    }
+
+    override suspend fun syncProjectsWithServer() {
+        try {
+            val projects = projectApi.getProjects()
+                .map { it.toDomain() }
+            projectDao.insertAll(projects.map { it.toEntity() })
+        } catch (e: Exception) {}
     }
 
 

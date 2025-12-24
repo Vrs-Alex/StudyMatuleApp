@@ -1,7 +1,6 @@
-package vrsalex.matule.presentation.project
+package vrsalex.matule.presentation.project.view
 
 import kotlinx.serialization.Serializable
-import vrsalex.matule.presentation.navigation.bottom.BottomTabGraphs
 
 
 @Serializable

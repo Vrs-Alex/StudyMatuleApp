@@ -18,7 +18,7 @@ interface ProjectDao {
     fun getAllFullProjects(): Flow<List<FullProjectInfo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertProject(project: ProjectEntity)
+    suspend fun insertProject(project: ProjectEntity): Long
 
     @Update
     suspend fun updateProject(project: ProjectEntity)
