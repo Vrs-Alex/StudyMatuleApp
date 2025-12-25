@@ -22,6 +22,9 @@ object ServerEndpoints {
         const val USER_PROJECTS_ADD_ENDPOINT = "$API_PREFIX$PROJECT_PREFIX/add"
         const val USER_PROJECTS_REMOVE_ENDPOINT = "$API_PREFIX$PROJECT_PREFIX/remove"
 
+        const val USER_PROJECT_TYPE_GET_ENDPOINT = "$API_PREFIX$PROJECT_PREFIX/type/get"
+        const val USER_PROJECT_CATEGORY_GET_ENDPOINT = "$API_PREFIX$PROJECT_PREFIX/category/get"
+
 
         val PUBLIC_ENDPOINTS = setOf(
             AUTH_REFRESH_TOKEN_ENDPOINT,

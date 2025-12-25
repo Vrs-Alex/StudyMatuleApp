@@ -19,4 +19,9 @@ interface ProjectRepository {
 
     fun getProjectCategoryById(id: Long): ProjectCategory?
 
+
+    fun getAllProjectTypes(): List<ProjectType>
+
+    fun getAllProjectCategories(): List<ProjectCategory>
+
 }

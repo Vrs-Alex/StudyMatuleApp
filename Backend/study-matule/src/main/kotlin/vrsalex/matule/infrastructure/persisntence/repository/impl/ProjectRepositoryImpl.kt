@@ -48,4 +48,14 @@ class ProjectRepositoryImpl(
         val entity = projectCategoryJpaRepository.findById(id).orElse(null)
         return entity.toDomain()
     }
+
+    override fun getAllProjectTypes(): List<ProjectType> {
+        val entities = projectTypeJpaRepository.findAll()
+        return entities.map { it.toDomain() }
+    }
+
+    override fun getAllProjectCategories(): List<ProjectCategory> {
+        val entities = projectCategoryJpaRepository.findAll()
+        return entities.map { it.toDomain() }
+    }
 }
