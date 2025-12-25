@@ -5,4 +5,5 @@ sealed interface ProjectResult {
     data class NetworkError(val message: String) : ProjectResult
     data class DatabaseError(val message: String) : ProjectResult
     data class UnknownError(val message: String) : ProjectResult
+    data object SyncError : ProjectResult
 }

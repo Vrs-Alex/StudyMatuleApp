@@ -50,12 +50,20 @@ class ProjectRepositoryImpl @Inject constructor(
 
     }
 
-    override suspend fun syncProjectsWithServer() {
-        try {
+    override suspend fun syncProjectsWithServer(): ProjectResult {
+        return try {
+            val types = projectApi.getTypes()
+            projectDao.insertAllTypes(types.map { it.toDomain().toEntity() })
+
+            val categories = projectApi.getCategories()
+            projectDao.insertAllCategories(categories.map { it.toDomain().toEntity() })
+
             val projects = projectApi.getProjects()
-                .map { it.toDomain() }
-            projectDao.insertAll(projects.map { it.toEntity() })
-        } catch (e: Exception) {}
+            projectDao.insertAll(projects.map { it.toDomain().toEntity() })
+            ProjectResult.Success
+        } catch (e: Exception) {
+            ProjectResult.SyncError
+        }
     }
 
 

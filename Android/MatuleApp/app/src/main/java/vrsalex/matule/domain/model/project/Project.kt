@@ -6,6 +6,6 @@ data class Project(
     val startDate: String = "",
     val endDate: String = "",
     val url: String = "",
-    val type: ProjectType = ProjectType(),
-    val category: ProjectCategory = ProjectCategory()
+    val type: ProjectType? = ProjectType(),
+    val category: ProjectCategory? = ProjectCategory()
 )

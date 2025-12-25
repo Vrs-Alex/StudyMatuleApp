@@ -8,7 +8,9 @@ import androidx.room.Transaction
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import vrsalex.matule.data.local.database.entity.FullProjectInfo
+import vrsalex.matule.data.local.database.entity.ProjectCategoryEntity
 import vrsalex.matule.data.local.database.entity.ProjectEntity
+import vrsalex.matule.data.local.database.entity.ProjectTypeEntity
 
 @Dao
 interface ProjectDao {
@@ -25,5 +27,11 @@ interface ProjectDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(projects: List<ProjectEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllTypes(types: List<ProjectTypeEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllCategories(categories: List<ProjectCategoryEntity>)
 
 }

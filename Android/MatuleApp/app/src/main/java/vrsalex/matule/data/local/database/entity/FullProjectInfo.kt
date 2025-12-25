@@ -9,11 +9,11 @@ data class FullProjectInfo(
         parentColumn = "typeId",
         entityColumn = "id"
     )
-    val projectType: ProjectTypeEntity,
+    val projectType: ProjectTypeEntity?,
 
     @Relation(
         parentColumn = "categoryId",
         entityColumn = "id"
     )
-    val projectCategory: ProjectCategoryEntity
+    val projectCategory: ProjectCategoryEntity?
 )

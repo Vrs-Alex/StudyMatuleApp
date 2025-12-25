@@ -40,6 +40,6 @@ fun Project.toAddRequest() = AddProjectRequest(
     startDate = this.startDate,
     endDate = this.endDate,
     url = this.url,
-    typeId = this.type.id,
-    categoryId = this.category.id,
+    typeId = this.type!!.id,
+    categoryId = this.category!!.id,
 )

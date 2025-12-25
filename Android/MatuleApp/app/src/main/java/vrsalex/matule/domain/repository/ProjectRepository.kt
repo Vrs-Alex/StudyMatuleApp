@@ -12,6 +12,6 @@ interface ProjectRepository {
 
     suspend fun updateProject(project: Project)
 
-    suspend fun syncProjectsWithServer()
+    suspend fun syncProjectsWithServer(): ProjectResult
 
 }

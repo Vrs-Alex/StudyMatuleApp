@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,6 +20,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import vrsalex.matule.common.TimeUtils
+import vrsalex.matule.uikit.component.button.AppButton
+import vrsalex.matule.uikit.component.button.ButtonSize
+import vrsalex.matule.uikit.component.button.ButtonType
 import vrsalex.matule.uikit.component.card.PrimaryCard
 import vrsalex.matule.uikit.component.header.SmallHeader
 import vrsalex.matule.uikit.component.icon.SystemIcon
@@ -73,11 +78,24 @@ private fun ProjectContent(
             ){ project ->
                 PrimaryCard(
                     title = project.name,
-                    description = project.startDate,
-                    cost = "",
-                    isSelected = true,
-                    onClick = {},
-                    onActionClick = {}
+                    bottomContent = {
+                        Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
+                            Text(
+                                text = TimeUtils.getDaysAgoText(project.startDate)
+                            )
+                        }
+                    },
+                    actionContent = {
+                        AppButton(
+                            buttonSize = ButtonSize.SMALL,
+                            buttonType = ButtonType.PRIMARY,
+                            onClick = { onEvent(ProjectContract.Event.OnProjectClicked) },
+                            text = "Открыть"
+                        )
+                    },
+                    onActionClick = {
+
+                    }
                 )
             }
 

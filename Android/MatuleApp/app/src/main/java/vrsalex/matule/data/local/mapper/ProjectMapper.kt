@@ -1,7 +1,9 @@
 package vrsalex.matule.data.local.mapper
 
 import vrsalex.matule.data.local.database.entity.FullProjectInfo
+import vrsalex.matule.data.local.database.entity.ProjectCategoryEntity
 import vrsalex.matule.data.local.database.entity.ProjectEntity
+import vrsalex.matule.data.local.database.entity.ProjectTypeEntity
 import vrsalex.matule.domain.model.project.Project
 import vrsalex.matule.domain.model.project.ProjectCategory
 import vrsalex.matule.domain.model.project.ProjectType
@@ -12,16 +14,19 @@ fun FullProjectInfo.toDomain(): Project = Project(
     startDate = project.startDate,
     endDate = project.endDate,
     url = project.url,
-    type = ProjectType(
-        id = projectType.id,
-        name = projectType.name,
-        description = projectType.description
-    ),
-    category = ProjectCategory(
-        id = projectCategory.id,
-        name = projectCategory.name,
-        description = projectCategory.description
-    )
+    type = projectType?.let {
+        ProjectType(
+            id = projectType.id,
+            name = projectType.name,
+            description = projectType.description)
+                            },
+    category = projectCategory?.let {
+        ProjectCategory(
+            id = projectCategory.id,
+            name = projectCategory.name,
+            description = projectCategory.description
+        )
+    }
 )
 
 fun Project.toEntity(): ProjectEntity = ProjectEntity(
@@ -30,6 +35,19 @@ fun Project.toEntity(): ProjectEntity = ProjectEntity(
     startDate = startDate,
     endDate = endDate,
     url = url,
-    typeId = type.id,
-    categoryId = category.id
+    typeId = type!!.id,
+    categoryId = category!!.id
+)
+
+
+fun ProjectType.toEntity() = ProjectTypeEntity(
+    id = id,
+    name = name,
+    description = description
+)
+
+fun ProjectCategory.toEntity() = ProjectCategoryEntity(
+    id = id,
+    name = name,
+    description = description
 )
