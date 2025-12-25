@@ -83,3 +83,40 @@ fun PrimaryCard(
     }
 
 }
+
+
+
+@Composable
+fun PrimaryCard(
+    title: String,
+    bottomContent: @Composable () -> Unit,
+    actionContent: @Composable () -> Unit,
+    onActionClick: () -> Unit,
+    modifier: Modifier = Modifier
+){
+
+
+    CardBackground() {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Text(
+                text = title,
+                style = AppTheme.typography.headLineMedium,
+                color = Black,
+                maxLines = 2
+            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                bottomContent()
+                actionContent()
+            }
+        }
+    }
+
+}

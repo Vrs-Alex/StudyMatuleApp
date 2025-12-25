@@ -28,7 +28,7 @@ fun CardBackground(
         else Modifier
 
     Surface(
-        modifier = modifier.fillMaxWidth().then(clickableModifier)
+        modifier = modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).then(clickableModifier)
             .shadow(
                 elevation = 20.dp,
                 spotColor = Color(0xFFE4EBF5).copy(alpha = 0.6f),
